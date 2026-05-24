@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Hero Section -->
+<div class="p-5 mb-4 rounded-3 text-white text-center"
+     style="background: linear-gradient(135deg, #1a6b3c, #2ecc71);">
+    <h1 class="display-4 fw-bold">🌿 SHOSHTHO FOODS</h1>
+    <p class="fs-4">সুস্থ থাকুন, সুন্দর থাকুন</p>
+    <p class="lead">তাজা ও স্বাস্থ্যকর খাবার এখন আপনার দরজায়</p>
+    <a href="/menu" class="btn btn-light btn-lg fw-bold mt-2">
+        🍽️ Food Menu দেখুন
+    </a>
+</div>
+
+<!-- Features -->
+<div class="row text-center my-5">
+    <div class="col-md-4 mb-3">
+        <div class="card p-4 h-100">
+            <div class="fs-1">🥗</div>
+            <h5 class="fw-bold mt-2">স্বাস্থ্যকর খাবার</h5>
+            <p>তাজা উপাদান দিয়ে তৈরি পুষ্টিকর খাবার</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card p-4 h-100">
+            <div class="fs-1">🚚</div>
+            <h5 class="fw-bold mt-2">দ্রুত ডেলিভারি</h5>
+            <p>অর্ডার করুন, ঘরে বসে পান</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card p-4 h-100">
+            <div class="fs-1">💳</div>
+            <h5 class="fw-bold mt-2">সহজ Payment</h5>
+            <p>bKash অথবা Cash on Delivery</p>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="text-center my-5">
+    <a href="/menu" class="btn btn-primary btn-lg px-5">
+        এখনই অর্ডার করুন 🛒
+    </a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="fw-bold mb-4">🍽️ আমাদের Food Menu</h2>
+
+<!-- Category Filter -->
+<div class="mb-4">
+    <a href="/menu" class="btn btn-primary me-2 mb-2">সব খাবার</a>
+    {% for cat in categories %}
+    <a href="/menu?category={{ cat[0] }}" 
+       class="btn btn-outline-primary me-2 mb-2">
+        {{ cat[0] }}
+    </a>
+    {% endfor %}
+</div>
+
+<!-- Food Cards -->
+{% if foods %}
+<div class="row">
+    {% for food in foods %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            {% if food.image_url %}
+            <img src="{{ food.image_url }}" 
+                 class="card-img-top" 
+                 style="height:200px; object-fit:cover;"
+                 alt="{{ food.name }}">
+            {% else %}
+            <div class="text-center py-4 bg-light fs-1">🍱</div>
+            {% endif %}
+            <div class="card-body">
+                <span class="badge bg-success mb-2">
+                    {{ food.category }}
+                </span>
+                <h5 class="card-title fw-bold">{{ food.name }}</h5>
+                <p class="card-text text-muted">
+                    {{ food.description }}
+                </p>
+                <p class="fw-bold fs-5 text-success">
+                    ৳ {{ food.price }}
+                </p>
+            </div>
+            <div class="card-footer bg-white border-0 pb-3">
+                <form action="/cart/add/{{ food.id }}" 
+                      method="POST">
+                    <button class="btn btn-primary w-100">
+                        🛒 Cart এ যোগ করুন
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-5">
+    <div class="fs-1">🍽️</div>
+    <h4 class="mt-3">এখনো কোনো খাবার যোগ করা হয়নি</h4>
+    <p class="text-muted">Admin থেকে খাবার যোগ করুন</p>
+</div>
+{% endif %}
+
+{% endblock %}

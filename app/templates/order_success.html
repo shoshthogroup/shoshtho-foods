@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="text-center py-5">
+    <div style="font-size: 5rem;">🎉</div>
+    <h2 class="fw-bold mt-3 text-success">
+        অর্ডার সফল হয়েছে!
+    </h2>
+    <p class="lead">
+        Order ID: <strong>#{{ order.id }}</strong>
+    </p>
+    <p class="text-muted">
+        Payment: 
+        {% if order.payment_method == 'bkash' %}
+            📱 bKash
+        {% else %}
+            💵 Cash on Delivery
+        {% endif %}
+    </p>
+    <p class="text-muted">
+        আপনার অর্ডার শীঘ্রই Deliver হবে। ধন্যবাদ! 🙏
+    </p>
+    <a href="/menu" class="btn btn-primary btn-lg mt-3">
+        আবার Order করুন
+    </a>
+</div>
+
+{% endblock %}

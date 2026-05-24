@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card shadow p-4">
+            <h3 class="fw-bold mb-4">🍱 নতুন খাবার যোগ করুন</h3>
+            <form method="POST" action="/admin/food/add">
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">খাবারের নাম</label>
+                    <input type="text" name="name" 
+                           class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">বিবরণ</label>
+                    <textarea name="description" 
+                              class="form-control" rows="3">
+                    </textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">দাম (৳)</label>
+                    <input type="number" name="price" 
+                           class="form-control" 
+                           step="0.01" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Category</label>
+                    <input type="text" name="category" 
+                           class="form-control" 
+                           placeholder="যেমন: Rice, Snacks, Drinks">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">
+                        ছবির URL (optional)
+                    </label>
+                    <input type="text" name="image_url" 
+                           class="form-control"
+                           placeholder="https://...">
+                </div>
+
+                <button type="submit" 
+                        class="btn btn-success w-100 btn-lg">
+                    ✅ খাবার যোগ করুন
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
