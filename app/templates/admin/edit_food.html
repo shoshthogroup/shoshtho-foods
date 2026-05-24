@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card shadow p-4">
+            <h3 class="fw-bold mb-4">✏️ খাবার Edit করুন</h3>
+            <form method="POST"
+                  action="/admin/food/edit/{{ food.id }}"
+                  enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">
+                        খাবারের নাম
+                    </label>
+                    <input type="text" name="name"
+                           class="form-control"
+                           value="{{ food.name }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">বিবরণ</label>
+                    <textarea name="description"
+                              class="form-control"
+                              rows="3">{{ food.description }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">দাম (৳)</label>
+                    <input type="number" name="price"
+                           class="form-control"
+                           value="{{ food.price }}"
+                           step="0.01" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Category</label>
+                    <input type="text" name="category"
+                           class="form-control"
+                           value="{{ food.category }}">
+                </div>
+
+                <!-- Current Image -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">
+                        বর্তমান ছবি
+                    </label>
+                    <div>
+                        {% if food.image_url %}
+                        <img src="{{ food.image_url }}"
+                             width="120" height="120"
+                             style="object-fit:cover;
+                                    border-radius:10px;"
+                             class="mb-2">
+                        {% else %}
+                        <span class="text-muted">
+                            কোনো ছবি নেই
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- New Image Upload -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">
+                        নতুন ছবি Upload করুন
+                    </label>
+                    <input type="file" name="image"
+                           class="form-control"
+                           accept="image/*">
+                    <small class="text-muted">
+                        PNG, JPG, JPEG, GIF, WEBP সাপোর্টেড
+                    </small>
+                </div>
+
+                <!-- Available Toggle -->
+                <div class="mb-4">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="is_available"
+                               id="is_available"
+                               {{ 'checked' if food.is_available }}>
+                        <label class="form-check-label fw-bold"
+                               for="is_available">
+                            Available (Menu তে দেখাবে)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit"
+                            class="btn btn-warning btn-lg flex-grow-1">
+                        ✅ Update করুন
+                    </button>
+                    <a href="/admin"
+                       class="btn btn-outline-secondary btn-lg">
+                        বাতিল
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

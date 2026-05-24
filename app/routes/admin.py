@@ -1,10 +1,19 @@
+import os
 from flask import Blueprint, render_template, \
     request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from app.models import FoodItem, Order, User, db
 from functools import wraps
+from werkzeug.utils import secure_filename
 
 admin = Blueprint('admin', __name__)
+
+UPLOAD_FOLDER = 'app/static/images'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def admin_required(f):
     @wraps(f)
@@ -24,27 +33,70 @@ def dashboard():
         Order.created_at.desc()).all()
     users = User.query.all()
     return render_template('admin/dashboard.html',
-                         foods=foods,
-                         orders=orders,
-                         users=users)
+                           foods=foods,
+                           orders=orders,
+                           users=users)
 
 @admin.route('/admin/food/add', methods=['GET', 'POST'])
 @login_required
 @admin_required
 def add_food():
     if request.method == 'POST':
+        image_url = ''
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+                file.save(os.path.join(UPLOAD_FOLDER, filename))
+                image_url = '/static/images/' + filename
         food = FoodItem(
             name=request.form.get('name'),
             description=request.form.get('description'),
             price=float(request.form.get('price')),
             category=request.form.get('category'),
-            image_url=request.form.get('image_url')
+            image_url=image_url
         )
         db.session.add(food)
         db.session.commit()
         flash('খাবার যোগ হয়েছে! ✅', 'success')
         return redirect(url_for('admin.dashboard'))
     return render_template('admin/add_food.html')
+
+@admin.route('/admin/food/edit/<int:food_id>',
+             methods=['GET', 'POST'])
+@login_required
+@admin_required
+def edit_food(food_id):
+    food = FoodItem.query.get_or_404(food_id)
+    if request.method == 'POST':
+        food.name = request.form.get('name')
+        food.description = request.form.get('description')
+        food.price = float(request.form.get('price'))
+        food.category = request.form.get('category')
+        food.is_available = 'is_available' in request.form
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+                file.save(os.path.join(UPLOAD_FOLDER, filename))
+                food.image_url = '/static/images/' + filename
+        db.session.commit()
+        flash('খাবার আপডেট হয়েছে! ✅', 'success')
+        return redirect(url_for('admin.dashboard'))
+    return render_template('admin/edit_food.html', food=food)
+
+@admin.route('/admin/food/delete/<int:food_id>',
+             methods=['POST'])
+@login_required
+@admin_required
+def delete_food(food_id):
+    food = FoodItem.query.get_or_404(food_id)
+    db.session.delete(food)
+    db.session.commit()
+    flash('খাবার মুছে গেছে! ✅', 'success')
+    return redirect(url_for('admin.dashboard'))
 
 @admin.route('/admin/order/<int:order_id>/update',
              methods=['POST'])

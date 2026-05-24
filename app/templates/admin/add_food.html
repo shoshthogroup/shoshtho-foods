@@ -5,45 +5,52 @@
     <div class="col-md-7">
         <div class="card shadow p-4">
             <h3 class="fw-bold mb-4">🍱 নতুন খাবার যোগ করুন</h3>
-            <form method="POST" action="/admin/food/add">
+            <form method="POST"
+                  action="/admin/food/add"
+                  enctype="multipart/form-data">
 
                 <div class="mb-3">
-                    <label class="form-label fw-bold">খাবারের নাম</label>
-                    <input type="text" name="name" 
+                    <label class="form-label fw-bold">
+                        খাবারের নাম
+                    </label>
+                    <input type="text" name="name"
                            class="form-control" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">বিবরণ</label>
-                    <textarea name="description" 
-                              class="form-control" rows="3">
-                    </textarea>
+                    <textarea name="description"
+                              class="form-control"
+                              rows="3"></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">দাম (৳)</label>
-                    <input type="number" name="price" 
-                           class="form-control" 
+                    <input type="number" name="price"
+                           class="form-control"
                            step="0.01" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Category</label>
-                    <input type="text" name="category" 
-                           class="form-control" 
+                    <input type="text" name="category"
+                           class="form-control"
                            placeholder="যেমন: Rice, Snacks, Drinks">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">
-                        ছবির URL (optional)
+                        ছবি Upload করুন
                     </label>
-                    <input type="text" name="image_url" 
+                    <input type="file" name="image"
                            class="form-control"
-                           placeholder="https://...">
+                           accept="image/*">
+                    <small class="text-muted">
+                        PNG, JPG, JPEG, GIF, WEBP সাপোর্টেড
+                    </small>
                 </div>
 
-                <button type="submit" 
+                <button type="submit"
                         class="btn btn-success w-100 btn-lg">
                     ✅ খাবার যোগ করুন
                 </button>

@@ -32,12 +32,76 @@
     </a>
 </div>
 
+<!-- Food Table -->
+<div class="card mb-4">
+    <div class="card-header fw-bold">🍱 সব খাবার</div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>ছবি</th>
+                    <th>নাম</th>
+                    <th>Category</th>
+                    <th>দাম</th>
+                    <th>Available</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for food in foods %}
+                <tr>
+                    <td>
+                        {% if food.image_url %}
+                        <img src="{{ food.image_url }}"
+                             width="60" height="60"
+                             style="object-fit:cover; border-radius:8px;">
+                        {% else %}
+                        <span class="fs-2">🍱</span>
+                        {% endif %}
+                    </td>
+                    <td class="fw-bold">{{ food.name }}</td>
+                    <td>
+                        <span class="badge bg-secondary">
+                            {{ food.category }}
+                        </span>
+                    </td>
+                    <td class="text-success fw-bold">
+                        ৳ {{ food.price }}
+                    </td>
+                    <td>
+                        {% if food.is_available %}
+                        <span class="badge bg-success">✅ আছে</span>
+                        {% else %}
+                        <span class="badge bg-danger">❌ নেই</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/admin/food/edit/{{ food.id }}"
+                           class="btn btn-sm btn-warning me-1">
+                            ✏️ Edit
+                        </a>
+                        <form method="POST"
+                              action="/admin/food/delete/{{ food.id }}"
+                              style="display:inline"
+                              onsubmit="return confirm('সত্যিই মুছবেন?')">
+                            <button class="btn btn-sm btn-danger">
+                                🗑️ Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <!-- Orders Table -->
 <div class="card mb-4">
     <div class="card-header fw-bold">📋 সব অর্ডার</div>
     <div class="card-body table-responsive">
         <table class="table table-hover">
-            <thead>
+            <thead class="table-light">
                 <tr>
                     <th>ID</th>
                     <th>Customer</th>
@@ -52,10 +116,12 @@
                 <tr>
                     <td>#{{ order.id }}</td>
                     <td>{{ order.user.name }}</td>
-                    <td>৳ {{ order.total }}</td>
+                    <td class="text-success fw-bold">
+                        ৳ {{ order.total }}
+                    </td>
                     <td>{{ order.payment_method }}</td>
                     <td>
-                        <span class="badge 
+                        <span class="badge
                             {% if order.status == 'delivered' %}
                                 bg-success
                             {% elif order.status == 'pending' %}
@@ -67,14 +133,23 @@
                         </span>
                     </td>
                     <td>
-                        <form method="POST" 
+                        <form method="POST"
                               action="/admin/order/{{ order.id }}/update">
-                            <select name="status" 
+                            <select name="status"
                                     class="form-select form-select-sm"
                                     onchange="this.form.submit()">
-                                <option value="pending">Pending</option>
-                                <option value="confirmed">Confirmed</option>
-                                <option value="delivered">Delivered</option>
+                                <option value="pending"
+                                    {{ 'selected' if order.status == 'pending' }}>
+                                    Pending
+                                </option>
+                                <option value="confirmed"
+                                    {{ 'selected' if order.status == 'confirmed' }}>
+                                    Confirmed
+                                </option>
+                                <option value="delivered"
+                                    {{ 'selected' if order.status == 'delivered' }}>
+                                    Delivered
+                                </option>
                             </select>
                         </form>
                     </td>
