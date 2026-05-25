@@ -1,109 +1,239 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="container position-relative" style="z-index:1;">
-        <div class="row align-items-center">
-            <div class="col-md-7">
-                <p class="text-uppercase mb-2"
-                   style="color:rgba(255,255,255,0.7);
-                          letter-spacing:2px; font-size:0.85rem;">
-                    SHOSHTHO Group Presents
-                </p>
-                <h1 class="display-4 fw-bold mb-3">
-                    সুস্বাদু ও স্বাস্থ্যকর<br>
-                    <span style="color:#f39c12;">খাবার</span>
-                    এখন Online এ
-                </h1>
-                <p class="lead mb-4"
-                   style="color:rgba(255,255,255,0.85);">
-                    তাজা উপাদান, ঘরোয়া রান্না।
-                    অর্ডার করুন, ঘরে বসে পান।
-                </p>
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="/menu"
-                       class="btn btn-accent btn-lg px-4">
-                        <i class="fas fa-utensils me-2"></i>
-                        Menu দেখুন
-                    </a>
-                    <a href="/register"
-                       class="btn btn-outline-light btn-lg px-4">
-                        Account খুলুন
-                    </a>
+<!-- Image Slider -->
+<div id="heroSlider" class="carousel slide carousel-fade"
+     data-bs-ride="carousel" data-bs-interval="4000">
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroSlider"
+                data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroSlider"
+                data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroSlider"
+                data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+            <div class="slider-bg"
+                 style="background: linear-gradient(135deg, #1a3c5e 0%, #2e86c1 100%);">
+                <div class="container slider-content">
+                    <div class="row align-items-center">
+                        <div class="col-md-7">
+                            <p class="slider-tag">SHOSHTHO Group</p>
+                            <h1 class="slider-title">
+                                সুস্বাদু ও স্বাস্থ্যকর<br>
+                                <span style="color:#f39c12;">খাবার</span>
+                                এখন Online এ
+                            </h1>
+                            <p class="slider-subtitle">
+                                তাজা উপাদান, ঘরোয়া রান্না।
+                                অর্ডার করুন, ঘরে বসে পান।
+                            </p>
+                            <a href="/menu"
+                               class="btn btn-accent btn-lg px-4">
+                                <i class="fas fa-utensils me-2"></i>
+                                Food Menu দেখুন
+                            </a>
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <div style="font-size:9rem;">🍽️</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-5 text-center mt-4 mt-md-0">
-                <div style="font-size:8rem; line-height:1;">🍽️</div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+            <div class="slider-bg"
+                 style="background: linear-gradient(135deg, #4a235a 0%, #7d3c98 100%);">
+                <div class="container slider-content">
+                    <div class="row align-items-center">
+                        <div class="col-md-7">
+                            <p class="slider-tag">SHOSHTHO Craft</p>
+                            <h1 class="slider-title">
+                                হাতের ছোঁয়ায় তৈরি<br>
+                                <span style="color:#f39c12;">পোশাক</span>
+                                এখন আপনার জন্য
+                            </h1>
+                            <p class="slider-subtitle">
+                                দেশীয় কারুকাজ, আধুনিক ডিজাইন।
+                                সেরা মানের পোশাক।
+                            </p>
+                            <a href="/craft"
+                               class="btn btn-accent btn-lg px-4">
+                                <i class="fas fa-tshirt me-2"></i>
+                                Craft দেখুন
+                            </a>
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <div style="font-size:9rem;">👗</div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+            <div class="slider-bg"
+                 style="background: linear-gradient(135deg, #1a5e20 0%, #27ae60 100%);">
+                <div class="container slider-content">
+                    <div class="row align-items-center">
+                        <div class="col-md-7">
+                            <p class="slider-tag">SHOSHTHO Group</p>
+                            <h1 class="slider-title">
+                                সুস্থ থাকুন<br>
+                                <span style="color:#f39c12;">সুন্দর</span>
+                                থাকুন
+                            </h1>
+                            <p class="slider-subtitle">
+                                SHOSHTHO Group এর সাথে থাকুন।
+                                সেরা পণ্য, সেরা সেবা।
+                            </p>
+                            <a href="/menu"
+                               class="btn btn-accent btn-lg px-4">
+                                <i class="fas fa-star me-2"></i>
+                                শুরু করুন
+                            </a>
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <div style="font-size:9rem;">🌿</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button"
+            data-bs-target="#heroSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button"
+            data-bs-target="#heroSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- Category Section -->
+<section class="container my-5">
+    <h2 class="section-title text-center" style="text-align:center !important;">
+        আমাদের Products
+    </h2>
+    <p class="text-center text-muted mb-5">
+        আপনার পছন্দের category তে Click করুন
+    </p>
+
+    <div class="row g-4 justify-content-center">
+
+        <!-- Food Category -->
+        <div class="col-md-5">
+            <a href="/menu" class="text-decoration-none">
+                <div class="category-card food-category">
+                    <div class="category-zoom-wrapper">
+                        <div class="category-emoji">🍱</div>
+                        <div class="category-overlay">
+                            <div class="category-info">
+                                <h3 class="fw-bold text-white mb-2">
+                                    SHOSHTHO Foods
+                                </h3>
+                                <p class="text-white opacity-90 mb-3">
+                                    স্বাস্থ্যকর ও সুস্বাদু খাবার
+                                </p>
+                                <span class="btn btn-accent">
+                                    <i class="fas fa-utensils me-2"></i>
+                                    Menu দেখুন
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Craft Category -->
+        <div class="col-md-5">
+            <a href="/craft" class="text-decoration-none">
+                <div class="category-card craft-category">
+                    <div class="category-zoom-wrapper">
+                        <div class="category-emoji">👗</div>
+                        <div class="category-overlay">
+                            <div class="category-info">
+                                <h3 class="fw-bold text-white mb-2">
+                                    SHOSHTHO Craft
+                                </h3>
+                                <p class="text-white opacity-90 mb-3">
+                                    হাতে তৈরি পোশাক ও কারুকাজ
+                                </p>
+                                <span class="btn btn-accent">
+                                    <i class="fas fa-tshirt me-2"></i>
+                                    Craft দেখুন
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </section>
 
 <!-- Features -->
-<section class="container my-5">
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card p-4 text-center h-100">
-                <div class="mb-3"
-                     style="font-size:2.5rem; color:#2e86c1;">
-                    <i class="fas fa-leaf"></i>
+<section style="background:#f0f4f8; padding:4rem 0;">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-4 text-center h-100">
+                    <div class="mb-3"
+                         style="font-size:2.5rem; color:#2e86c1;">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h5 class="fw-bold" style="color:#1a3c5e;">
+                        তাজা উপাদান
+                    </h5>
+                    <p class="text-muted mb-0">
+                        প্রতিদিন তাজা উপাদান দিয়ে
+                        তৈরি পুষ্টিকর খাবার
+                    </p>
                 </div>
-                <h5 class="fw-bold" style="color:#1a3c5e;">
-                    তাজা উপাদান
-                </h5>
-                <p class="text-muted mb-0">
-                    প্রতিদিন তাজা উপাদান দিয়ে
-                    তৈরি পুষ্টিকর খাবার
-                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 text-center h-100">
+                    <div class="mb-3"
+                         style="font-size:2.5rem; color:#f39c12;">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h5 class="fw-bold" style="color:#1a3c5e;">
+                        দ্রুত ডেলিভারি
+                    </h5>
+                    <p class="text-muted mb-0">
+                        অর্ডার করুন এবং
+                        দ্রুততম সময়ে পান
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 text-center h-100">
+                    <div class="mb-3"
+                         style="font-size:2.5rem; color:#27ae60;">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h5 class="fw-bold" style="color:#1a3c5e;">
+                        সহজ Order
+                    </h5>
+                    <p class="text-muted mb-0">
+                        Login ছাড়াই Order করুন।
+                        শুধু নাম ও ঠিকানা দিন।
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card p-4 text-center h-100">
-                <div class="mb-3"
-                     style="font-size:2.5rem; color:#f39c12;">
-                    <i class="fas fa-truck"></i>
-                </div>
-                <h5 class="fw-bold" style="color:#1a3c5e;">
-                    দ্রুত ডেলিভারি
-                </h5>
-                <p class="text-muted mb-0">
-                    অর্ডার করুন এবং
-                    দ্রুততম সময়ে পান
-                </p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card p-4 text-center h-100">
-                <div class="mb-3"
-                     style="font-size:2.5rem; color:#27ae60;">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h5 class="fw-bold" style="color:#1a3c5e;">
-                    নিরাপদ Payment
-                </h5>
-                <p class="text-muted mb-0">
-                    bKash ও Cash on Delivery
-                    সুবিধাজনক Payment
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA Section -->
-<section style="background: linear-gradient(135deg, #f39c12, #e67e22);
-                padding: 4rem 0; margin: 2rem 0;">
-    <div class="container text-center text-white">
-        <h2 class="fw-bold mb-3">আজই অর্ডার করুন!</h2>
-        <p class="lead mb-4 opacity-90">
-            সুস্বাদু খাবার এখন মাত্র কয়েক Click দূরে
-        </p>
-        <a href="/menu" class="btn btn-light btn-lg px-5 fw-bold"
-           style="color:#e67e22;">
-            <i class="fas fa-shopping-cart me-2"></i>
-            এখনই Order করুন
-        </a>
     </div>
 </section>
 

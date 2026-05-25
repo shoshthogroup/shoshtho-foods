@@ -1,85 +1,108 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2 class="fw-bold mb-4">📦 Checkout</h2>
+<div class="page-header">
+    <div class="container">
+        <h2><i class="fas fa-shopping-bag me-2"></i>Checkout</h2>
+    </div>
+</div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="card p-4">
-            <h5 class="fw-bold mb-3">Delivery Information</h5>
-            <form method="POST" action="/checkout">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-4 shadow-sm">
+                <h5 class="fw-bold mb-4"
+                    style="color:#1a3c5e;">
+                    <i class="fas fa-user me-2"></i>
+                    আপনার তথ্য দিন
+                </h5>
+                <form method="POST" action="/checkout">
 
-                <div class="mb-3">
-                    <label class="form-label fw-bold">
-                        আপনার নাম
-                    </label>
-                    <input type="text" class="form-control"
-                           value="{{ current_user.name }}" 
-                           readonly>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label fw-bold">
-                        ফোন নম্বর
-                    </label>
-                    <input type="text" class="form-control"
-                           value="{{ current_user.phone }}" 
-                           readonly>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label fw-bold">
-                        Delivery Address *
-                    </label>
-                    <textarea name="address" 
-                              class="form-control" 
-                              rows="3" 
-                              required
-                              placeholder="আপনার পূর্ণ ঠিকানা লিখুন">
-                    </textarea>
-                </div>
-
-                <div class="mb-4">
-                    <label class="form-label fw-bold">
-                        Payment Method *
-                    </label>
-
-                    <div class="form-check p-3 border rounded mb-2">
-                        <input class="form-check-input" 
-                               type="radio" 
-                               name="payment_method" 
-                               value="bkash" 
-                               id="bkash" required>
-                        <label class="form-check-label fw-bold" 
-                               for="bkash">
-                            📱 bKash
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            আপনার নাম *
                         </label>
-                        <small class="d-block text-muted mt-1">
-                            bKash নম্বর: 01700-000000
-                        </small>
+                        <input type="text" name="name"
+                               class="form-control form-control-lg"
+                               placeholder="আপনার পূর্ণ নাম"
+                               required>
                     </div>
 
-                    <div class="form-check p-3 border rounded">
-                        <input class="form-check-input" 
-                               type="radio" 
-                               name="payment_method" 
-                               value="cash_on_delivery" 
-                               id="cod">
-                        <label class="form-check-label fw-bold" 
-                               for="cod">
-                            💵 Cash on Delivery
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            মোবাইল নম্বর *
                         </label>
-                        <small class="d-block text-muted mt-1">
-                            ডেলিভারির সময় টাকা দিন
-                        </small>
+                        <input type="text" name="phone"
+                               class="form-control form-control-lg"
+                               placeholder="01XXXXXXXXX"
+                               required>
                     </div>
-                </div>
 
-                <button type="submit" 
-                        class="btn btn-primary btn-lg w-100">
-                    ✅ অর্ডার Confirm করুন
-                </button>
-            </form>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">
+                            Delivery Address *
+                        </label>
+                        <textarea name="address"
+                                  class="form-control"
+                                  rows="3" required
+                                  placeholder="বাড়ি নং, রাস্তা, এলাকা, জেলা">
+                        </textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">
+                            Payment Method *
+                        </label>
+                        <div class="p-3 border rounded mb-2"
+                             style="cursor:pointer;"
+                             onclick="document.getElementById('bkash').click()">
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="payment_method"
+                                       value="bkash"
+                                       id="bkash" required>
+                                <label class="form-check-label fw-bold"
+                                       for="bkash">
+                                    <i class="fas fa-mobile-alt me-2"
+                                       style="color:#e2136e;"></i>
+                                    bKash Payment
+                                </label>
+                                <small class="d-block text-muted mt-1 ms-4">
+                                    bKash নম্বর: 01700-000000
+                                    (Send Money করুন)
+                                </small>
+                            </div>
+                        </div>
+                        <div class="p-3 border rounded"
+                             style="cursor:pointer;"
+                             onclick="document.getElementById('cod').click()">
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="payment_method"
+                                       value="cash_on_delivery"
+                                       id="cod">
+                                <label class="form-check-label fw-bold"
+                                       for="cod">
+                                    <i class="fas fa-money-bill-wave me-2"
+                                       style="color:#27ae60;"></i>
+                                    Cash on Delivery
+                                </label>
+                                <small class="d-block text-muted mt-1 ms-4">
+                                    ডেলিভারির সময় টাকা দিন
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-primary btn-lg w-100">
+                        <i class="fas fa-check-circle me-2"></i>
+                        অর্ডার Confirm করুন
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

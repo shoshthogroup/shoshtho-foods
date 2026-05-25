@@ -30,3 +30,6 @@ def menu():
 def food_detail(food_id):
     food = FoodItem.query.get_or_404(food_id)
     return render_template('food_detail.html', food=food)
+@shop.route('/craft')
+def craft():
+    return render_template('craft.html')
