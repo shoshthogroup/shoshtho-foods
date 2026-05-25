@@ -2,46 +2,109 @@
 {% block content %}
 
 <!-- Hero Section -->
-<div class="p-5 mb-4 rounded-3 text-white text-center"
-     style="background: linear-gradient(135deg, #1a6b3c, #2ecc71);">
-    <h1 class="display-4 fw-bold">🌿 SHOSHTHO FOODS</h1>
-    <p class="fs-4">সুস্থ থাকুন, সুন্দর থাকুন</p>
-    <p class="lead">তাজা ও স্বাস্থ্যকর খাবার এখন আপনার দরজায়</p>
-    <a href="/menu" class="btn btn-light btn-lg fw-bold mt-2">
-        🍽️ Food Menu দেখুন
-    </a>
-</div>
+<section class="hero-section">
+    <div class="container position-relative" style="z-index:1;">
+        <div class="row align-items-center">
+            <div class="col-md-7">
+                <p class="text-uppercase mb-2"
+                   style="color:rgba(255,255,255,0.7);
+                          letter-spacing:2px; font-size:0.85rem;">
+                    SHOSHTHO Group Presents
+                </p>
+                <h1 class="display-4 fw-bold mb-3">
+                    সুস্বাদু ও স্বাস্থ্যকর<br>
+                    <span style="color:#f39c12;">খাবার</span>
+                    এখন Online এ
+                </h1>
+                <p class="lead mb-4"
+                   style="color:rgba(255,255,255,0.85);">
+                    তাজা উপাদান, ঘরোয়া রান্না।
+                    অর্ডার করুন, ঘরে বসে পান।
+                </p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="/menu"
+                       class="btn btn-accent btn-lg px-4">
+                        <i class="fas fa-utensils me-2"></i>
+                        Menu দেখুন
+                    </a>
+                    <a href="/register"
+                       class="btn btn-outline-light btn-lg px-4">
+                        Account খুলুন
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-5 text-center mt-4 mt-md-0">
+                <div style="font-size:8rem; line-height:1;">🍽️</div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Features -->
-<div class="row text-center my-5">
-    <div class="col-md-4 mb-3">
-        <div class="card p-4 h-100">
-            <div class="fs-1">🥗</div>
-            <h5 class="fw-bold mt-2">স্বাস্থ্যকর খাবার</h5>
-            <p>তাজা উপাদান দিয়ে তৈরি পুষ্টিকর খাবার</p>
+<section class="container my-5">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card p-4 text-center h-100">
+                <div class="mb-3"
+                     style="font-size:2.5rem; color:#2e86c1;">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h5 class="fw-bold" style="color:#1a3c5e;">
+                    তাজা উপাদান
+                </h5>
+                <p class="text-muted mb-0">
+                    প্রতিদিন তাজা উপাদান দিয়ে
+                    তৈরি পুষ্টিকর খাবার
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-4 text-center h-100">
+                <div class="mb-3"
+                     style="font-size:2.5rem; color:#f39c12;">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h5 class="fw-bold" style="color:#1a3c5e;">
+                    দ্রুত ডেলিভারি
+                </h5>
+                <p class="text-muted mb-0">
+                    অর্ডার করুন এবং
+                    দ্রুততম সময়ে পান
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-4 text-center h-100">
+                <div class="mb-3"
+                     style="font-size:2.5rem; color:#27ae60;">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h5 class="fw-bold" style="color:#1a3c5e;">
+                    নিরাপদ Payment
+                </h5>
+                <p class="text-muted mb-0">
+                    bKash ও Cash on Delivery
+                    সুবিধাজনক Payment
+                </p>
+            </div>
         </div>
     </div>
-    <div class="col-md-4 mb-3">
-        <div class="card p-4 h-100">
-            <div class="fs-1">🚚</div>
-            <h5 class="fw-bold mt-2">দ্রুত ডেলিভারি</h5>
-            <p>অর্ডার করুন, ঘরে বসে পান</p>
-        </div>
-    </div>
-    <div class="col-md-4 mb-3">
-        <div class="card p-4 h-100">
-            <div class="fs-1">💳</div>
-            <h5 class="fw-bold mt-2">সহজ Payment</h5>
-            <p>bKash অথবা Cash on Delivery</p>
-        </div>
-    </div>
-</div>
+</section>
 
-<!-- Call to Action -->
-<div class="text-center my-5">
-    <a href="/menu" class="btn btn-primary btn-lg px-5">
-        এখনই অর্ডার করুন 🛒
-    </a>
-</div>
+<!-- CTA Section -->
+<section style="background: linear-gradient(135deg, #f39c12, #e67e22);
+                padding: 4rem 0; margin: 2rem 0;">
+    <div class="container text-center text-white">
+        <h2 class="fw-bold mb-3">আজই অর্ডার করুন!</h2>
+        <p class="lead mb-4 opacity-90">
+            সুস্বাদু খাবার এখন মাত্র কয়েক Click দূরে
+        </p>
+        <a href="/menu" class="btn btn-light btn-lg px-5 fw-bold"
+           style="color:#e67e22;">
+            <i class="fas fa-shopping-cart me-2"></i>
+            এখনই Order করুন
+        </a>
+    </div>
+</section>
 
 {% endblock %}
