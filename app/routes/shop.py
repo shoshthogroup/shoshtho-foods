@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from app.models import FoodItem, db
+from app.models import FoodItem, CraftItem, db
 
 shop = Blueprint('shop', __name__)
 
@@ -9,27 +9,40 @@ def home():
 
 @shop.route('/menu')
 def menu():
-    category = request.args.get('category')
-    if category:
+    sub = request.args.get('sub')
+    if sub:
         foods = FoodItem.query.filter_by(
             is_available=True,
-            category=category
+            sub_category=sub
         ).all()
     else:
         foods = FoodItem.query.filter_by(
             is_available=True
         ).all()
-    categories = db.session.query(
-        FoodItem.category
+    sub_categories = db.session.query(
+        FoodItem.sub_category
     ).distinct().all()
     return render_template('menu.html',
                            foods=foods,
-                           categories=categories)
+                           sub_categories=sub_categories,
+                           current_sub=sub)
 
-@shop.route('/menu/<int:food_id>')
-def food_detail(food_id):
-    food = FoodItem.query.get_or_404(food_id)
-    return render_template('food_detail.html', food=food)
 @shop.route('/craft')
 def craft():
-    return render_template('craft.html')
+    category = request.args.get('category')
+    if category:
+        items = CraftItem.query.filter_by(
+            is_available=True,
+            category=category
+        ).all()
+    else:
+        items = CraftItem.query.filter_by(
+            is_available=True
+        ).all()
+    return render_template('craft.html',
+                           items=items,
+                           current_cat=category)
+
+@shop.route('/education')
+def education():
+    return render_template('education.html')

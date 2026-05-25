@@ -108,3 +108,75 @@ def update_order(order_id):
     db.session.commit()
     flash('Order status আপডেট হয়েছে!', 'success')
     return redirect(url_for('admin.dashboard'))
+@admin.route('/admin/craft')
+@login_required
+@admin_required
+def craft_dashboard():
+    from app.models import CraftItem
+    items = CraftItem.query.all()
+    return render_template('admin/craft_dashboard.html',
+                           items=items)
+
+@admin.route('/admin/craft/add', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def add_craft():
+    if request.method == 'POST':
+        from app.models import CraftItem
+        image_url = ''
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+                file.save(os.path.join(UPLOAD_FOLDER, filename))
+                image_url = '/static/images/' + filename
+        item = CraftItem(
+            name=request.form.get('name'),
+            description=request.form.get('description'),
+            price=float(request.form.get('price')),
+            category=request.form.get('category'),
+            image_url=image_url
+        )
+        db.session.add(item)
+        db.session.commit()
+        flash('Craft Item যোগ হয়েছে! ✅', 'success')
+        return redirect(url_for('admin.craft_dashboard'))
+    return render_template('admin/add_craft.html')
+
+@admin.route('/admin/craft/edit/<int:item_id>',
+             methods=['GET', 'POST'])
+@login_required
+@admin_required
+def edit_craft(item_id):
+    from app.models import CraftItem
+    item = CraftItem.query.get_or_404(item_id)
+    if request.method == 'POST':
+        item.name = request.form.get('name')
+        item.description = request.form.get('description')
+        item.price = float(request.form.get('price'))
+        item.category = request.form.get('category')
+        item.is_available = 'is_available' in request.form
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+                file.save(os.path.join(UPLOAD_FOLDER, filename))
+                item.image_url = '/static/images/' + filename
+        db.session.commit()
+        flash('Craft Item আপডেট হয়েছে! ✅', 'success')
+        return redirect(url_for('admin.craft_dashboard'))
+    return render_template('admin/edit_craft.html', item=item)
+
+@admin.route('/admin/craft/delete/<int:item_id>',
+             methods=['POST'])
+@login_required
+@admin_required
+def delete_craft(item_id):
+    from app.models import CraftItem
+    item = CraftItem.query.get_or_404(item_id)
+    db.session.delete(item)
+    db.session.commit()
+    flash('Craft Item মুছে গেছে! ✅', 'success')
+    return redirect(url_for('admin.craft_dashboard'))

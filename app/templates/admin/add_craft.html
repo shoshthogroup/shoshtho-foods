@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow p-4">
+                <h3 class="fw-bold mb-4">
+                    👗 নতুন Craft Item যোগ করুন
+                </h3>
+                <form method="POST" action="/admin/craft/add"
+                      enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">নাম</label>
+                        <input type="text" name="name"
+                               class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            বিবরণ
+                        </label>
+                        <textarea name="description"
+                                  class="form-control"
+                                  rows="3"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            দাম (৳)
+                        </label>
+                        <input type="number" name="price"
+                               class="form-control"
+                               step="0.01" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Category
+                        </label>
+                        <select name="category"
+                                class="form-select" required>
+                            <option value="">-- সিলেক্ট করুন --</option>
+                            <option value="Men">Men's Wear</option>
+                            <option value="Women">Women's Wear</option>
+                            <option value="Child">Children's Wear</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            ছবি Upload
+                        </label>
+                        <input type="file" name="image"
+                               class="form-control"
+                               accept="image/*">
+                    </div>
+
+                    <button type="submit"
+                            class="btn w-100 btn-lg fw-bold"
+                            style="background:#7d3c98; color:white;">
+                        ✅ যোগ করুন
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

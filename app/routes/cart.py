@@ -34,7 +34,23 @@ def add_to_cart(food_id):
     session['cart'] = cart_items
     flash('Cart এ যোগ হয়েছে! ✅', 'success')
     return redirect(url_for('shop.menu'))
+@cart.route('/cart/add/food/<int:food_id>', methods=['POST'])
+def add_food_to_cart(food_id):
+    cart_items = session.get('cart', {})
+    key = f"food_{food_id}"
+    cart_items[key] = cart_items.get(key, 0) + 1
+    session['cart'] = cart_items
+    flash('Food Cart এ যোগ হয়েছে! ✅', 'success')
+    return redirect(url_for('shop.menu'))
 
+@cart.route('/cart/add/craft/<int:item_id>', methods=['POST'])
+def add_craft_to_cart(item_id):
+    cart_items = session.get('cart', {})
+    key = f"craft_{item_id}"
+    cart_items[key] = cart_items.get(key, 0) + 1
+    session['cart'] = cart_items
+    flash('Craft Cart এ যোগ হয়েছে! ✅', 'success')
+    return redirect(url_for('shop.craft'))
 @cart.route('/cart/remove/<int:food_id>')
 def remove_from_cart(food_id):
     cart_items = session.get('cart', {})

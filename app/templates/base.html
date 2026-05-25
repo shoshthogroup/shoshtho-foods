@@ -308,6 +308,38 @@
             background: rgba(0,0,0,0.4);
         }
         .category-info { text-align: center; padding: 2rem; }
+        /* ── Dropdown ── */
+        .dropdown-menu-animated {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            border-radius: 12px;
+            padding: 0.5rem;
+            margin-top: 0.5rem !important;
+            animation: dropFade 0.2s ease;
+        }
+        @keyframes dropFade {
+            from { opacity:0; transform:translateY(-8px); }
+            to   { opacity:1; transform:translateY(0); }
+        }
+        .dropdown-item {
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .dropdown-item:hover {
+            background: #f0f4f8;
+            color: var(--primary);
+            padding-left: 1.3rem;
+        }
+        /* ── Image Zoom ── */
+        .zoom-container { cursor: zoom-in; }
+        .zoom-img {
+            transition: transform 0.4s ease;
+        }
+        .zoom-container:hover .zoom-img {
+            transform: scale(1.12);
+        }
     </style>
 </head>
 <body>
@@ -329,54 +361,157 @@
         </button>
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto align-items-center gap-1">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">
-                        <i class="fas fa-home me-1"></i>Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/menu">
-                        <i class="fas fa-utensils me-1"></i>Food Menu
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/cart">
-                        <i class="fas fa-shopping-cart me-1"></i>Cart
-                        {% set cart = session.get('cart', {}) %}
-                        {% if cart %}
-                        <span class="cart-badge">
-                            {{ cart.values()|sum }}
-                        </span>
-                        {% endif %}
-                    </a>
-                </li>
-                {% if current_user.is_authenticated %}
-                    {% if current_user.is_admin %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin">
-                            <i class="fas fa-cog me-1"></i>Admin
-                        </a>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">
-                            <i class="fas fa-sign-out-alt me-1"></i>
-                            {{ current_user.name }}
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">
-                            <i class="fas fa-sign-in-alt me-1"></i>Login
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-accent ms-2" href="/register">
-                            Register
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
+    <li class="nav-item">
+        <a class="nav-link" href="/">
+            <i class="fas fa-home me-1"></i>Home
+        </a>
+    </li>
+
+    <!-- Food Dropdown -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#"
+           data-bs-toggle="dropdown">
+            <i class="fas fa-utensils me-1"></i>Food
+        </a>
+        <ul class="dropdown-menu dropdown-menu-animated">
+            <li>
+                <a class="dropdown-item" href="/menu">
+                    <i class="fas fa-th-large me-2"
+                       style="color:#2e86c1;"></i>
+                    সব খাবার
+                </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <a class="dropdown-item"
+                   href="/menu?sub=Organic">
+                    <i class="fas fa-leaf me-2"
+                       style="color:#27ae60;"></i>
+                    Organic Food
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item"
+                   href="/menu?sub=Fresh">
+                    <i class="fas fa-apple-alt me-2"
+                       style="color:#e74c3c;"></i>
+                    Fresh Food
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item"
+                   href="/menu?sub=Snacks">
+                    <i class="fas fa-cookie me-2"
+                       style="color:#f39c12;"></i>
+                    Snacks
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item"
+                   href="/menu?sub=Drinks">
+                    <i class="fas fa-glass-cheers me-2"
+                       style="color:#3498db;"></i>
+                    Drinks
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <!-- Craft Dropdown -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#"
+           data-bs-toggle="dropdown">
+            <i class="fas fa-tshirt me-1"></i>Craft
+        </a>
+        <ul class="dropdown-menu dropdown-menu-animated">
+            <li>
+                <a class="dropdown-item" href="/craft">
+                    <i class="fas fa-th-large me-2"
+                       style="color:#7d3c98;"></i>
+                    সব Craft
+                </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <a class="dropdown-item"
+                   href="/craft?category=Men">
+                    <i class="fas fa-male me-2"
+                       style="color:#2e86c1;"></i>
+                    Men's Wear
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item"
+                   href="/craft?category=Women">
+                    <i class="fas fa-female me-2"
+                       style="color:#e74c3c;"></i>
+                    Women's Wear
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item"
+                   href="/craft?category=Child">
+                    <i class="fas fa-child me-2"
+                       style="color:#f39c12;"></i>
+                    Children's Wear
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <!-- Education Dropdown -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#"
+           data-bs-toggle="dropdown">
+            <i class="fas fa-graduation-cap me-1"></i>
+            Education
+        </a>
+        <ul class="dropdown-menu dropdown-menu-animated">
+            <li>
+                <a class="dropdown-item" href="/education">
+                    <i class="fas fa-book me-2"
+                       style="color:#2e86c1;"></i>
+                    শীঘ্রই আসছে...
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <!-- Cart -->
+    <li class="nav-item">
+        <a class="nav-link" href="/cart">
+            <i class="fas fa-shopping-cart me-1"></i>Cart
+            {% set cart = session.get('cart', {}) %}
+            {% if cart %}
+            <span class="cart-badge">
+                {{ cart.values()|sum }}
+            </span>
+            {% endif %}
+        </a>
+    </li>
+
+    {% if current_user.is_authenticated %}
+        {% if current_user.is_admin %}
+        <li class="nav-item">
+            <a class="nav-link" href="/admin">
+                <i class="fas fa-cog me-1"></i>Admin
+            </a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">
+                <i class="fas fa-sign-out-alt me-1"></i>
+                {{ current_user.name }}
+            </a>
+        </li>
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="/login">
+                <i class="fas fa-sign-in-alt me-1"></i>Login
+            </a>
+        </li>
+    {% endif %}
+</ul>
         </div>
     </div>
 </nav>
