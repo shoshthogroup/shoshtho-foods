@@ -23,17 +23,6 @@ def view_cart():
                            foods=foods,
                            total=total)
 
-@cart.route('/cart/add/<int:food_id>', methods=['POST'])
-def add_to_cart(food_id):
-    cart_items = session.get('cart', {})
-    food_id_str = str(food_id)
-    if food_id_str in cart_items:
-        cart_items[food_id_str] += 1
-    else:
-        cart_items[food_id_str] = 1
-    session['cart'] = cart_items
-    flash('Cart এ যোগ হয়েছে! ✅', 'success')
-    return redirect(url_for('shop.menu'))
 @cart.route('/cart/add/food/<int:food_id>', methods=['POST'])
 def add_food_to_cart(food_id):
     cart_items = session.get('cart', {})
