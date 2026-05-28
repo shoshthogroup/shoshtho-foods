@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Image Slider -->
+<!-- Hero Slider -->
 <div id="heroSlider" class="carousel slide carousel-fade"
      data-bs-ride="carousel" data-bs-interval="4000">
-
-    <!-- Indicators -->
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#heroSlider"
                 data-bs-slide-to="0" class="active"></button>
@@ -14,24 +12,21 @@
         <button type="button" data-bs-target="#heroSlider"
                 data-bs-slide-to="2"></button>
     </div>
-
     <div class="carousel-inner">
-        <!-- Slide 1 -->
         <div class="carousel-item active">
-            <div class="slider-bg"
-                 style="background: linear-gradient(135deg, #1a3c5e 0%, #2e86c1 100%);">
-                <div class="container slider-content">
+            <div class="slide-box"
+                 style="background:linear-gradient(135deg,#1a3c5e,#2e86c1);">
+                <div class="container slide-inner">
                     <div class="row align-items-center">
                         <div class="col-md-7">
-                            <p class="slider-tag">SHOSHTHO FOODS</p>
-                            <br>
-                            <p class="slider-tag">ষষ্ঠ ফুড </p>
-                            <h1 class="slider-title">
+                            <p class="slide-tag">SHOSHTHO Group</p>
+                            <h1 class="slide-h1">
                                 সুস্বাদু ও স্বাস্থ্যকর<br>
-                                <span style="color:#f39c12;">খাবার</span>
-                                এখন Online এ
+                                <span style="color:#f39c12;">
+                                    খাবার
+                                </span> এখন Online এ
                             </h1>
-                            <p class="slider-subtitle">
+                            <p class="slide-p">
                                 তাজা উপাদান, ঘরোয়া রান্না।
                                 অর্ডার করুন, ঘরে বসে পান।
                             </p>
@@ -41,28 +36,28 @@
                                 Food Menu দেখুন
                             </a>
                         </div>
-                        <div class="col-md-5 text-center">
-                            <div style="font-size:9rem;">🍽️</div>
+                        <div class="col-md-5 text-center
+                                    d-none d-md-block">
+                            <div style="font-size:10rem;">🍽️</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Slide 2 -->
         <div class="carousel-item">
-            <div class="slider-bg"
-                 style="background: linear-gradient(135deg, #4a235a 0%, #7d3c98 100%);">
-                <div class="container slider-content">
+            <div class="slide-box"
+                 style="background:linear-gradient(135deg,#4a235a,#7d3c98);">
+                <div class="container slide-inner">
                     <div class="row align-items-center">
                         <div class="col-md-7">
-                            <p class="slider-tag">SHOSHTHO Craft</p>
-                            <h1 class="slider-title">
+                            <p class="slide-tag">SHOSHTHO Craft</p>
+                            <h1 class="slide-h1">
                                 হাতের ছোঁয়ায় তৈরি<br>
-                                <span style="color:#f39c12;">পোশাক</span>
-                                এখন আপনার জন্য
+                                <span style="color:#f39c12;">
+                                    পোশাক
+                                </span> এখন আপনার জন্য
                             </h1>
-                            <p class="slider-subtitle">
+                            <p class="slide-p">
                                 দেশীয় কারুকাজ, আধুনিক ডিজাইন।
                                 সেরা মানের পোশাক।
                             </p>
@@ -72,47 +67,46 @@
                                 Craft দেখুন
                             </a>
                         </div>
-                        <div class="col-md-5 text-center">
-                            <div style="font-size:9rem;">👗</div>
+                        <div class="col-md-5 text-center
+                                    d-none d-md-block">
+                            <div style="font-size:10rem;">👗</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Slide 3 -->
         <div class="carousel-item">
-            <div class="slider-bg"
-                 style="background: linear-gradient(135deg, #1a5e20 0%, #27ae60 100%);">
-                <div class="container slider-content">
+            <div class="slide-box"
+                 style="background:linear-gradient(135deg,#1a5e20,#27ae60);">
+                <div class="container slide-inner">
                     <div class="row align-items-center">
                         <div class="col-md-7">
-                            <p class="slider-tag">SHOSHTHO Group</p>
-                            <h1 class="slider-title">
-                                সুস্থ থাকুন<br>
-                                <span style="color:#f39c12;">সুন্দর</span>
-                                থাকুন
+                            <p class="slide-tag">SHOSHTHO Education</p>
+                            <h1 class="slide-h1">
+                                শিক্ষার আলোয়<br>
+                                <span style="color:#f39c12;">
+                                    আলোকিত
+                                </span> হোন
                             </h1>
-                            <p class="slider-subtitle">
-                                SHOSHTHO Group এর সাথে থাকুন।
-                                সেরা পণ্য, সেরা সেবা।
+                            <p class="slide-p">
+                                মানসম্পন্ন শিক্ষা সেবা
+                                শীঘ্রই আসছে।
                             </p>
-                            <a href="/menu"
+                            <a href="/education"
                                class="btn btn-accent btn-lg px-4">
-                                <i class="fas fa-star me-2"></i>
-                                শুরু করুন
+                                <i class="fas fa-graduation-cap me-2"></i>
+                                আরো জানুন
                             </a>
                         </div>
-                        <div class="col-md-5 text-center">
-                            <div style="font-size:9rem;">🌿</div>
+                        <div class="col-md-5 text-center
+                                    d-none d-md-block">
+                            <div style="font-size:10rem;">📚</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Controls -->
     <button class="carousel-control-prev" type="button"
             data-bs-target="#heroSlider" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
@@ -123,116 +117,355 @@
     </button>
 </div>
 
-<!-- Category Section -->
-<section class="container my-5">
-    <h2 class="section-title text-center" style="text-align:center !important;">
-        আমাদের Products
-    </h2>
-    <p class="text-center text-muted mb-5">
-        আপনার পছন্দের category তে Click করুন
-    </p>
-
-    <div class="row g-4 justify-content-center">
-
-        <!-- Food Category -->
-        <div class="col-md-5">
-            <a href="/menu" class="text-decoration-none">
-                <div class="category-card food-category">
-                    <div class="category-zoom-wrapper">
-                        <div class="category-emoji">🍱</div>
-                        <div class="category-overlay">
-                            <div class="category-info">
-                                <h3 class="fw-bold text-white mb-2">
-                                    SHOSHTHO Foods
-                                </h3>
-                                <p class="text-white opacity-90 mb-3">
-                                    স্বাস্থ্যকর ও সুস্বাদু খাবার
-                                </p>
-                                <span class="btn btn-accent">
-                                    <i class="fas fa-utensils me-2"></i>
-                                    Menu দেখুন
-                                </span>
-                            </div>
+<!-- About SHOSHTHO Group -->
+<section class="py-5" style="background:white;">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-md-6">
+                <p class="text-uppercase mb-2"
+                   style="color:#f39c12; letter-spacing:2px;
+                          font-size:0.85rem; font-weight:600;">
+                    আমাদের সম্পর্কে
+                </p>
+                <h2 class="fw-bold mb-4" style="color:#1a3c5e;">
+                    SHOSHTHO Group কী?
+                </h2>
+                <p class="text-muted mb-3" style="line-height:1.9;">
+                    SHOSHTHO Group হলো বাংলাদেশের একটি
+                    বহুমুখী প্রতিষ্ঠান যা মানুষের
+                    দৈনন্দিন জীবনকে সহজ ও সুন্দর করতে
+                    কাজ করে। আমরা স্বাস্থ্যকর খাবার,
+                    হাতে তৈরি পোশাক এবং মানসম্পন্ন
+                    শিক্ষা সেবা প্রদান করি।
+                </p>
+                <p class="text-muted mb-4" style="line-height:1.9;">
+                    আমাদের লক্ষ্য হলো বাংলাদেশের
+                    মানুষের জীবনমান উন্নত করা এবং
+                    দেশীয় পণ্যের প্রসার ঘটানো।
+                </p>
+                <div class="row g-3">
+                    <div class="col-4 text-center">
+                        <div class="fw-bold fs-3"
+                             style="color:#1a3c5e;">৫০০+</div>
+                        <small class="text-muted">
+                            সন্তুষ্ট গ্রাহক
+                        </small>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="fw-bold fs-3"
+                             style="color:#1a3c5e;">৩</div>
+                        <small class="text-muted">
+                            বিভাগ
+                        </small>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="fw-bold fs-3"
+                             style="color:#1a3c5e;">২+</div>
+                        <small class="text-muted">
+                            বছরের অভিজ্ঞতা
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="about-card"
+                             style="background:linear-gradient(135deg,#1a3c5e,#2e86c1);">
+                            <div class="fs-1 mb-2">🍽️</div>
+                            <h6 class="text-white fw-bold">
+                                SHOSHTHO Foods
+                            </h6>
+                            <p class="text-white opacity-75 small mb-0">
+                                স্বাস্থ্যকর খাবার
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="about-card mt-4"
+                             style="background:linear-gradient(135deg,#4a235a,#7d3c98);">
+                            <div class="fs-1 mb-2">👗</div>
+                            <h6 class="text-white fw-bold">
+                                SHOSHTHO Craft
+                            </h6>
+                            <p class="text-white opacity-75 small mb-0">
+                                হাতে তৈরি পোশাক
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="about-card"
+                             style="background:linear-gradient(135deg,#1a5e20,#27ae60);">
+                            <div class="fs-1 mb-2">📚</div>
+                            <h6 class="text-white fw-bold">
+                                SHOSHTHO Education
+                            </h6>
+                            <p class="text-white opacity-75 small mb-0">
+                                মানসম্পন্ন শিক্ষা
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="about-card mt-4"
+                             style="background:linear-gradient(135deg,#7d6608,#f39c12);">
+                            <div class="fs-1 mb-2">🌿</div>
+                            <h6 class="text-white fw-bold">
+                                আমাদের Vision
+                            </h6>
+                            <p class="text-white opacity-75 small mb-0">
+                                সুস্থ বাংলাদেশ
+                            </p>
                         </div>
                     </div>
                 </div>
-            </a>
-        </div>
-
-        <!-- Craft Category -->
-        <div class="col-md-5">
-            <a href="/craft" class="text-decoration-none">
-                <div class="category-card craft-category">
-                    <div class="category-zoom-wrapper">
-                        <div class="category-emoji">👗</div>
-                        <div class="category-overlay">
-                            <div class="category-info">
-                                <h3 class="fw-bold text-white mb-2">
-                                    SHOSHTHO Craft
-                                </h3>
-                                <p class="text-white opacity-90 mb-3">
-                                    হাতে তৈরি পোশাক ও কারুকাজ
-                                </p>
-                                <span class="btn btn-accent">
-                                    <i class="fas fa-tshirt me-2"></i>
-                                    Craft দেখুন
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Features -->
-<section style="background:#f0f4f8; padding:4rem 0;">
+<!-- Our Divisions -->
+<section class="py-5" style="background:#f0f4f8;">
     <div class="container">
+        <div class="text-center mb-5">
+            <p class="text-uppercase mb-2"
+               style="color:#f39c12; letter-spacing:2px;
+                      font-size:0.85rem; font-weight:600;">
+                আমাদের বিভাগ
+            </p>
+            <h2 class="fw-bold" style="color:#1a3c5e;">
+                আমরা কী করি?
+            </h2>
+        </div>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card p-4 text-center h-100">
-                    <div class="mb-3"
-                         style="font-size:2.5rem; color:#2e86c1;">
+                <a href="/menu" class="text-decoration-none">
+                    <div class="division-card">
+                        <div class="division-icon"
+                             style="background:linear-gradient(135deg,#1a3c5e,#2e86c1);">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h4 class="fw-bold mt-3"
+                            style="color:#1a3c5e;">
+                            SHOSHTHO Foods
+                        </h4>
+                        <p class="text-muted">
+                            তাজা ও স্বাস্থ্যকর খাবার।
+                            Organic, Fresh, Snacks ও
+                            Drinks সবই পাবেন এখানে।
+                        </p>
+                        <span style="color:#2e86c1;
+                                     font-weight:600;">
+                            Menu দেখুন →
+                        </span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/craft" class="text-decoration-none">
+                    <div class="division-card">
+                        <div class="division-icon"
+                             style="background:linear-gradient(135deg,#4a235a,#7d3c98);">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h4 class="fw-bold mt-3"
+                            style="color:#1a3c5e;">
+                            SHOSHTHO Craft
+                        </h4>
+                        <p class="text-muted">
+                            হাতে তৈরি পোশাক ও কারুকাজ।
+                            Men, Women ও Children
+                            সবার জন্য পোশাক।
+                        </p>
+                        <span style="color:#7d3c98;
+                                     font-weight:600;">
+                            Craft দেখুন →
+                        </span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/education" class="text-decoration-none">
+                    <div class="division-card">
+                        <div class="division-icon"
+                             style="background:linear-gradient(135deg,#1a5e20,#27ae60);">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="fw-bold mt-3"
+                            style="color:#1a3c5e;">
+                            SHOSHTHO Education
+                        </h4>
+                        <p class="text-muted">
+                            মানসম্পন্ন শিক্ষা সেবা।
+                            শীঘ্রই আসছে আমাদের
+                            শিক্ষামূলক প্ল্যাটফর্ম।
+                        </p>
+                        <span style="color:#27ae60;
+                                     font-weight:600;">
+                            শীঘ্রই আসছে →
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="py-5" style="background:white;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="text-uppercase mb-2"
+               style="color:#f39c12; letter-spacing:2px;
+                      font-size:0.85rem; font-weight:600;">
+                কেন আমরা?
+            </p>
+            <h2 class="fw-bold" style="color:#1a3c5e;">
+                আমাদের বেছে নেওয়ার কারণ
+            </h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3 col-6 text-center">
+                <div class="why-card">
+                    <div class="why-icon">
                         <i class="fas fa-leaf"></i>
                     </div>
-                    <h5 class="fw-bold" style="color:#1a3c5e;">
+                    <h6 class="fw-bold mt-3"
+                        style="color:#1a3c5e;">
                         তাজা উপাদান
-                    </h5>
-                    <p class="text-muted mb-0">
-                        প্রতিদিন তাজা উপাদান দিয়ে
-                        তৈরি পুষ্টিকর খাবার
+                    </h6>
+                    <p class="text-muted small">
+                        সবসময় তাজা ও মানসম্পন্ন
                     </p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card p-4 text-center h-100">
-                    <div class="mb-3"
-                         style="font-size:2.5rem; color:#f39c12;">
+            <div class="col-md-3 col-6 text-center">
+                <div class="why-card">
+                    <div class="why-icon"
+                         style="background:rgba(243,156,18,0.1);
+                                color:#f39c12;">
                         <i class="fas fa-truck"></i>
                     </div>
-                    <h5 class="fw-bold" style="color:#1a3c5e;">
+                    <h6 class="fw-bold mt-3"
+                        style="color:#1a3c5e;">
                         দ্রুত ডেলিভারি
-                    </h5>
-                    <p class="text-muted mb-0">
-                        অর্ডার করুন এবং
-                        দ্রুততম সময়ে পান
+                    </h6>
+                    <p class="text-muted small">
+                        সময়মতো পৌঁছে দেই
                     </p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card p-4 text-center h-100">
-                    <div class="mb-3"
-                         style="font-size:2.5rem; color:#27ae60;">
-                        <i class="fas fa-mobile-alt"></i>
+            <div class="col-md-3 col-6 text-center">
+                <div class="why-card">
+                    <div class="why-icon"
+                         style="background:rgba(231,76,60,0.1);
+                                color:#e74c3c;">
+                        <i class="fas fa-heart"></i>
                     </div>
-                    <h5 class="fw-bold" style="color:#1a3c5e;">
-                        সহজ Order
-                    </h5>
-                    <p class="text-muted mb-0">
-                        Login ছাড়াই Order করুন।
-                        শুধু নাম ও ঠিকানা দিন।
+                    <h6 class="fw-bold mt-3"
+                        style="color:#1a3c5e;">
+                        গুণমান নিশ্চিত
+                    </h6>
+                    <p class="text-muted small">
+                        সর্বোচ্চ মান বজায় রাখি
                     </p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 text-center">
+                <div class="why-card">
+                    <div class="why-icon"
+                         style="background:rgba(39,174,96,0.1);
+                                color:#27ae60;">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h6 class="fw-bold mt-3"
+                        style="color:#1a3c5e;">
+                        সেরা সেবা
+                    </h6>
+                    <p class="text-muted small">
+                        সবসময় পাশে আছি
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-5"
+         style="background:linear-gradient(135deg,#1a3c5e,#2e86c1);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-7 text-white">
+                <h2 class="fw-bold mb-3">যোগাযোগ করুন</h2>
+                <p class="opacity-75 mb-4">
+                    যেকোনো প্রশ্ন বা সমস্যায়
+                    আমরা সবসময় পাশে আছি।
+                </p>
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="width:40px; height:40px;
+                                    background:rgba(255,255,255,0.1);
+                                    border-radius:50%;
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;">
+                            <i class="fas fa-phone"
+                               style="color:#f39c12;"></i>
+                        </div>
+                        <span>01700-000000</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="width:40px; height:40px;
+                                    background:rgba(255,255,255,0.1);
+                                    border-radius:50%;
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;">
+                            <i class="fas fa-envelope"
+                               style="color:#f39c12;"></i>
+                        </div>
+                        <span>info@shoshtho.com</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="width:40px; height:40px;
+                                    background:rgba(255,255,255,0.1);
+                                    border-radius:50%;
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;">
+                            <i class="fas fa-map-marker-alt"
+                               style="color:#f39c12;"></i>
+                        </div>
+                        <span>Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 mt-4 mt-md-0">
+                <div class="card p-4">
+                    <h5 class="fw-bold mb-3"
+                        style="color:#1a3c5e;">
+                        Message পাঠান
+                    </h5>
+                    <div class="mb-3">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="আপনার নাম">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="মোবাইল নম্বর">
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control"
+                                  rows="3"
+                                  placeholder="আপনার Message">
+                        </textarea>
+                    </div>
+                    <button class="btn btn-primary w-100">
+                        <i class="fas fa-paper-plane me-2"></i>
+                        পাঠান
+                    </button>
                 </div>
             </div>
         </div>

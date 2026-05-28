@@ -1,96 +1,157 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="page-header"
-     style="background:linear-gradient(135deg,#4a235a,#7d3c98);
-            padding:2rem 0;">
+<!-- Craft Page Header -->
+<div class="craft-page-header">
     <div class="container">
-        <h2 class="text-white fw-bold">
+        <h1 class="fw-bold text-white mb-2">
             <i class="fas fa-tshirt me-2"></i>
             SHOSHTHO Craft
-        </h2>
+        </h1>
+        <p class="text-white opacity-75 mb-0">
+            হাতে তৈরি পোশাক ও কারুকাজ
+        </p>
     </div>
 </div>
 
 <div class="container my-4">
-    <!-- Category Filter -->
-    <div class="mb-4 d-flex flex-wrap gap-2">
+    <!-- Filter -->
+    <div class="d-flex flex-wrap gap-2 mb-4">
         <a href="/craft"
-           class="btn {% if not current_cat %}btn-primary{% else %}btn-outline-primary{% endif %}">
+           class="filter-btn {% if not current_cat %}active-filter{% endif %}">
             <i class="fas fa-th me-1"></i>সব Craft
         </a>
         <a href="/craft?category=Men"
-           class="btn {% if current_cat=='Men' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+           class="filter-btn {% if current_cat=='Men' %}active-filter{% endif %}"
+           style="--fc:#2e86c1;">
             <i class="fas fa-male me-1"></i>Men's Wear
         </a>
         <a href="/craft?category=Women"
-           class="btn {% if current_cat=='Women' %}btn-danger{% else %}btn-outline-danger{% endif %}">
+           class="filter-btn {% if current_cat=='Women' %}active-filter{% endif %}"
+           style="--fc:#e74c3c;">
             <i class="fas fa-female me-1"></i>Women's Wear
         </a>
         <a href="/craft?category=Child"
-           class="btn {% if current_cat=='Child' %}btn-warning{% else %}btn-outline-warning{% endif %}">
+           class="filter-btn {% if current_cat=='Child' %}active-filter{% endif %}"
+           style="--fc:#f39c12;">
             <i class="fas fa-child me-1"></i>Children's Wear
         </a>
     </div>
 
     {% if items %}
-    <div class="row g-4">
+    <!-- Magazine Style Grid -->
+    <div class="magazine-grid">
         {% for item in items %}
-        <div class="col-md-4 col-sm-6">
-            <div class="card food-card h-100">
-                <div class="zoom-container"
-                     style="height:250px; overflow:hidden;
-                            border-radius:12px 12px 0 0;">
+        {% if loop.index == 1 %}
+        <div class="mag-featured">
+            <div class="mag-card">
+                <div class="mag-img-wrap">
                     {% if item.image_url %}
                     <img src="{{ item.image_url }}"
-                         class="zoom-img w-100 h-100"
-                         style="object-fit:cover;"
-                         alt="{{ item.name }}">
+                         class="mag-img" alt="{{ item.name }}">
                     {% else %}
-                    <div class="w-100 h-100 d-flex
-                                align-items-center
-                                justify-content-center
-                                bg-light fs-1">
-                        👗
-                    </div>
+                    <div class="mag-no-img">👗</div>
                     {% endif %}
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between
-                                align-items-start mb-2">
-                        <span class="category-badge"
-                              style="background:rgba(125,60,152,0.1);
-                                     color:#7d3c98;
-                                     border-color:rgba(125,60,152,0.2);">
+                    <div class="mag-overlay">
+                        <span class="mag-cat"
+                              style="background:#7d3c98;">
                             {{ item.category }}
                         </span>
-                        <span class="price-tag">
-                            ৳ {{ item.price }}
-                        </span>
                     </div>
-                    <h5 class="card-title fw-bold">
-                        {{ item.name }}
-                    </h5>
-                    <p class="card-text text-muted small">
-                        {{ item.description }}
-                    </p>
                 </div>
-                <div class="card-footer bg-white border-0 pb-3">
-                    <form action="/cart/add/craft/{{ item.id }}"
-                          method="POST">
-                        <button class="btn w-100"
-                                style="background:#7d3c98;
-                                       color:white;
-                                       font-weight:600;">
-                            <i class="fas fa-cart-plus me-2"></i>
-                            Cart এ যোগ করুন
-                        </button>
-                    </form>
+                <div class="mag-body">
+                    <h3 class="mag-title">{{ item.name }}</h3>
+                    <p class="mag-desc">{{ item.description }}</p>
+                    <div class="mag-footer">
+                        <span class="mag-price">৳ {{ item.price }}</span>
+                        <form action="/cart/add/craft/{{ item.id }}"
+                              method="POST">
+                            <button class="mag-btn"
+                                    style="background:#7d3c98;">
+                                <i class="fas fa-cart-plus me-1"></i>
+                                Cart এ যোগ করুন
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        {% elif loop.index == 2 or loop.index == 3 %}
+        {% if loop.index == 2 %}
+        <div class="mag-medium-wrap">
+        {% endif %}
+            <div class="mag-card mag-medium">
+                <div class="mag-img-wrap" style="height:160px;">
+                    {% if item.image_url %}
+                    <img src="{{ item.image_url }}"
+                         class="mag-img" alt="{{ item.name }}">
+                    {% else %}
+                    <div class="mag-no-img">👗</div>
+                    {% endif %}
+                    <div class="mag-overlay">
+                        <span class="mag-cat"
+                              style="background:#7d3c98;">
+                            {{ item.category }}
+                        </span>
+                    </div>
+                </div>
+                <div class="mag-body">
+                    <h5 class="mag-title">{{ item.name }}</h5>
+                    <div class="mag-footer">
+                        <span class="mag-price">৳ {{ item.price }}</span>
+                        <form action="/cart/add/craft/{{ item.id }}"
+                              method="POST">
+                            <button class="mag-btn-sm"
+                                    style="background:#7d3c98;">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% if loop.index == 3 %}
+        </div>
+        {% endif %}
+        {% else %}
+        {% if loop.index == 4 %}
+        <div class="mag-small-row">
+        {% endif %}
+            <div class="mag-card mag-small">
+                <div class="mag-img-wrap" style="height:140px;">
+                    {% if item.image_url %}
+                    <img src="{{ item.image_url }}"
+                         class="mag-img" alt="{{ item.name }}">
+                    {% else %}
+                    <div class="mag-no-img">👗</div>
+                    {% endif %}
+                    <div class="mag-overlay">
+                        <span class="mag-cat"
+                              style="background:#7d3c98;">
+                            {{ item.category }}
+                        </span>
+                    </div>
+                </div>
+                <div class="mag-body">
+                    <h6 class="mag-title">{{ item.name }}</h6>
+                    <div class="mag-footer">
+                        <span class="mag-price">৳ {{ item.price }}</span>
+                        <form action="/cart/add/craft/{{ item.id }}"
+                              method="POST">
+                            <button class="mag-btn-sm"
+                                    style="background:#7d3c98;">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% if loop.last %}
+        </div>
+        {% endif %}
+        {% endif %}
         {% endfor %}
     </div>
+
     {% else %}
     <div class="text-center py-5">
         <div class="fs-1">👗</div>
@@ -101,5 +162,4 @@
     </div>
     {% endif %}
 </div>
-
 {% endblock %}

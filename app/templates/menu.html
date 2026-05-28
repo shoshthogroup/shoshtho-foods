@@ -1,91 +1,161 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="page-header">
+<!-- Food Page Header -->
+<div class="food-page-header">
     <div class="container">
-        <h2><i class="fas fa-utensils me-2"></i>Food Menu</h2>
+        <h1 class="fw-bold text-white mb-2">
+            <i class="fas fa-utensils me-2"></i>
+            SHOSHTHO Foods
+        </h1>
+        <p class="text-white opacity-75 mb-0">
+            তাজা ও স্বাস্থ্যকর খাবার
+        </p>
     </div>
 </div>
 
-<div class="container">
-    <!-- Sub Category Filter -->
-    <div class="mb-4 d-flex flex-wrap gap-2">
+<div class="container my-4">
+    <!-- Filter Buttons -->
+    <div class="d-flex flex-wrap gap-2 mb-4">
         <a href="/menu"
-           class="btn {% if not current_sub %}btn-primary{% else %}btn-outline-primary{% endif %}">
+           class="filter-btn {% if not current_sub %}active-filter{% endif %}">
             <i class="fas fa-th me-1"></i>সব খাবার
         </a>
         <a href="/menu?sub=Organic"
-           class="btn {% if current_sub=='Organic' %}btn-success{% else %}btn-outline-success{% endif %}">
+           class="filter-btn {% if current_sub=='Organic' %}active-filter{% endif %}"
+           style="--fc:#27ae60;">
             <i class="fas fa-leaf me-1"></i>Organic
         </a>
         <a href="/menu?sub=Fresh"
-           class="btn {% if current_sub=='Fresh' %}btn-danger{% else %}btn-outline-danger{% endif %}">
+           class="filter-btn {% if current_sub=='Fresh' %}active-filter{% endif %}"
+           style="--fc:#e74c3c;">
             <i class="fas fa-apple-alt me-1"></i>Fresh
         </a>
         <a href="/menu?sub=Snacks"
-           class="btn {% if current_sub=='Snacks' %}btn-warning{% else %}btn-outline-warning{% endif %}">
+           class="filter-btn {% if current_sub=='Snacks' %}active-filter{% endif %}"
+           style="--fc:#f39c12;">
             <i class="fas fa-cookie me-1"></i>Snacks
         </a>
         <a href="/menu?sub=Drinks"
-           class="btn {% if current_sub=='Drinks' %}btn-info{% else %}btn-outline-info{% endif %}">
+           class="filter-btn {% if current_sub=='Drinks' %}active-filter{% endif %}"
+           style="--fc:#3498db;">
             <i class="fas fa-glass-cheers me-1"></i>Drinks
         </a>
     </div>
 
     {% if foods %}
-    <div class="row g-4">
+    <!-- Magazine Style Grid -->
+    <div class="magazine-grid">
         {% for food in foods %}
-        <div class="col-md-4 col-sm-6">
-            <div class="card food-card h-100">
-                <!-- Zoom Image -->
-                <div class="zoom-container"
-                     style="height:200px; overflow:hidden;
-                            border-radius:12px 12px 0 0;">
+        {% if loop.index == 1 %}
+        <!-- Featured Large Card -->
+        <div class="mag-featured">
+            <div class="mag-card">
+                <div class="mag-img-wrap">
                     {% if food.image_url %}
                     <img src="{{ food.image_url }}"
-                         class="zoom-img w-100 h-100"
-                         style="object-fit:cover;"
-                         alt="{{ food.name }}">
+                         class="mag-img" alt="{{ food.name }}">
                     {% else %}
-                    <div class="w-100 h-100 d-flex
-                                align-items-center
-                                justify-content-center
-                                bg-light fs-1">
-                        🍱
-                    </div>
+                    <div class="mag-no-img">🍱</div>
                     {% endif %}
-                </div>
-
-                <div class="card-body">
-                    <div class="d-flex justify-content-between
-                                align-items-start mb-2">
-                        <span class="category-badge">
-                            {{ food.sub_category or food.category }}
-                        </span>
-                        <span class="price-tag">
-                            ৳ {{ food.price }}
+                    <div class="mag-overlay">
+                        <span class="mag-cat">
+                            {{ food.sub_category or food.category or 'Food' }}
                         </span>
                     </div>
-                    <h5 class="card-title fw-bold">
-                        {{ food.name }}
-                    </h5>
-                    <p class="card-text text-muted small">
-                        {{ food.description }}
-                    </p>
                 </div>
-                <div class="card-footer bg-white border-0 pb-3">
-                    <form action="/cart/add/food/{{ food.id }}"
-                          method="POST">
-                        <button class="btn btn-primary w-100">
-                            <i class="fas fa-cart-plus me-2"></i>
-                            Cart এ যোগ করুন
-                        </button>
-                    </form>
+                <div class="mag-body">
+                    <h3 class="mag-title">{{ food.name }}</h3>
+                    <p class="mag-desc">{{ food.description }}</p>
+                    <div class="mag-footer">
+                        <span class="mag-price">৳ {{ food.price }}</span>
+                        <form action="/cart/add/food/{{ food.id }}"
+                              method="POST">
+                            <button class="mag-btn">
+                                <i class="fas fa-cart-plus me-1"></i>
+                                Cart এ যোগ করুন
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        {% elif loop.index == 2 or loop.index == 3 %}
+        <!-- Medium Cards -->
+        {% if loop.index == 2 %}
+        <div class="mag-medium-wrap">
+        {% endif %}
+            <div class="mag-card mag-medium">
+                <div class="mag-img-wrap"
+                     style="height:160px;">
+                    {% if food.image_url %}
+                    <img src="{{ food.image_url }}"
+                         class="mag-img" alt="{{ food.name }}">
+                    {% else %}
+                    <div class="mag-no-img">🍱</div>
+                    {% endif %}
+                    <div class="mag-overlay">
+                        <span class="mag-cat">
+                            {{ food.sub_category or food.category or 'Food' }}
+                        </span>
+                    </div>
+                </div>
+                <div class="mag-body">
+                    <h5 class="mag-title">{{ food.name }}</h5>
+                    <div class="mag-footer">
+                        <span class="mag-price">৳ {{ food.price }}</span>
+                        <form action="/cart/add/food/{{ food.id }}"
+                              method="POST">
+                            <button class="mag-btn-sm">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% if loop.index == 3 %}
+        </div>
+        {% endif %}
+        {% else %}
+        <!-- Small Cards -->
+        {% if loop.index == 4 %}
+        <div class="mag-small-row">
+        {% endif %}
+            <div class="mag-card mag-small">
+                <div class="mag-img-wrap"
+                     style="height:140px;">
+                    {% if food.image_url %}
+                    <img src="{{ food.image_url }}"
+                         class="mag-img" alt="{{ food.name }}">
+                    {% else %}
+                    <div class="mag-no-img">🍱</div>
+                    {% endif %}
+                    <div class="mag-overlay">
+                        <span class="mag-cat">
+                            {{ food.sub_category or food.category or 'Food' }}
+                        </span>
+                    </div>
+                </div>
+                <div class="mag-body">
+                    <h6 class="mag-title">{{ food.name }}</h6>
+                    <div class="mag-footer">
+                        <span class="mag-price">৳ {{ food.price }}</span>
+                        <form action="/cart/add/food/{{ food.id }}"
+                              method="POST">
+                            <button class="mag-btn-sm">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% if loop.last %}
+        </div>
+        {% endif %}
+        {% endif %}
         {% endfor %}
     </div>
+
     {% else %}
     <div class="text-center py-5">
         <div class="fs-1">🍽️</div>
@@ -96,5 +166,4 @@
     </div>
     {% endif %}
 </div>
-
 {% endblock %}
