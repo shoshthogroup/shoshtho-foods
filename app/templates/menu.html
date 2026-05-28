@@ -184,15 +184,28 @@
                     {{ food.badge }}
                 </div>
                 {% endif %}
-                <div class="product-img-wrap">
-                    {% if food.image_url %}
-                    <img src="{{ food.image_url }}"
-                         class="product-img"
-                         alt="{{ food.name }}">
-                    {% else %}
-                    <div class="product-no-img">🍱</div>
-                    {% endif %}
-                </div>
+                <div class="product-img-wrap"
+     onclick="openProductModal({
+         image: '{{ food.image_url or '' }}',
+         name: '{{ food.name }}',
+         price: '{{ food.price }}',
+         old_price: '{{ food.old_price or '' }}',
+         badge: '{{ food.badge or '' }}',
+         category: '{{ food.sub_category or food.category or 'Food' }}',
+         description: `{{ food.description or '' }}`,
+         cart_url: '/cart/add/food/{{ food.id }}'
+     })">
+    {% if food.image_url %}
+    <img src="{{ food.image_url }}"
+         class="product-img"
+         alt="{{ food.name }}">
+    {% else %}
+    <div class="product-no-img">🍱</div>
+    {% endif %}
+    <div class="img-zoom-icon">
+        <i class="fas fa-search-plus"></i>
+    </div>
+</div>
                 <div class="product-info">
                     <span class="product-cat">
                         {{ food.sub_category or food.category or 'Food' }}

@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
     <style>
         :root {
             --primary:   #1a3c5e;
@@ -936,6 +937,192 @@
         }
         .blog-prev { left: -10px !important; }
         .blog-next { right: -10px !important; }
+        /* ── Product Modal ── */
+        .product-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: fadeIn 0.2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity:0; }
+            to   { opacity:1; }
+        }
+        .product-modal-content {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity:0; }
+            to   { transform: translateY(0); opacity:1; }
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+        }
+        .modal-close-btn:hover {
+            background: #e74c3c;
+            transform: scale(1.1);
+        }
+        .modal-img-wrap {
+            height: 400px;
+            overflow: hidden;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: zoom-in;
+        }
+        .modal-main-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+        }
+        .zoom-hint {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        .modal-details {
+            padding: 2rem;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .modal-badge {
+            background: #e74c3c;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .modal-category {
+            color: #2e86c1;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+        .modal-name {
+            font-weight: 700;
+            color: #1a3c5e;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        .modal-price-wrap { display: flex; align-items: center; gap: 0.8rem; }
+        .modal-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a3c5e;
+        }
+        .modal-old-price {
+            text-decoration: line-through;
+            color: #adb5bd;
+            font-size: 1rem;
+        }
+        .modal-discount-pct {
+            background: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .modal-desc {
+            color: #6c757d;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        .qty-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            border: 2px solid #e9ecef;
+        }
+        .qty-wrap span {
+            font-weight: 700;
+            font-size: 1.1rem;
+            min-width: 24px;
+            text-align: center;
+            color: #1a3c5e;
+        }
+        .qty-btn {
+            background: white;
+            border: 2px solid #1a3c5e;
+            color: #1a3c5e;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+        .qty-btn:hover {
+            background: #1a3c5e;
+            color: white;
+        }
+        .share-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+        .share-btn:hover { transform: scale(1.1); }
+        .share-btn.facebook { background: #1877f2; }
+        .share-btn.whatsapp { background: #25d366; }
+        @media (max-width: 768px) {
+            .modal-img-wrap { height: 250px; }
+            .modal-details { padding: 1.2rem; }
+            .modal-name { font-size: 1.2rem; }
+            .modal-price { font-size: 1.4rem; }
+        }
     </style>
     <meta name="csrf-token"
       content="{{ csrf_token() }}">
@@ -1233,6 +1420,211 @@ document.addEventListener('DOMContentLoaded', function() {
             form.appendChild(input);
         }
     });
+});
+</script>
+<!-- Product Modal -->
+<div id="productModal" class="product-modal">
+    <div class="product-modal-content">
+        <!-- Close Button -->
+        <button class="modal-close-btn"
+                onclick="closeProductModal()">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="row g-0">
+            <!-- Image Side -->
+            <div class="col-md-6">
+                <div class="modal-img-wrap">
+                    <img id="modalImage"
+                         src="" alt=""
+                         class="modal-main-img">
+                    <!-- Zoom Lens -->
+                    <div class="zoom-hint">
+                        <i class="fas fa-search-plus"></i>
+                        Scroll to zoom
+                    </div>
+                </div>
+            </div>
+
+            <!-- Details Side -->
+            <div class="col-md-6">
+                <div class="modal-details">
+                    <!-- Badge -->
+                    <div id="modalBadge"
+                         class="modal-badge mb-2">
+                    </div>
+
+                    <!-- Category -->
+                    <p id="modalCategory"
+                       class="modal-category"></p>
+
+                    <!-- Name -->
+                    <h3 id="modalName"
+                        class="modal-name"></h3>
+
+                    <!-- Price -->
+                    <div class="modal-price-wrap mb-3">
+                        <span id="modalPrice"
+                              class="modal-price"></span>
+                        <span id="modalOldPrice"
+                              class="modal-old-price"></span>
+                        <span id="modalDiscount"
+                              class="modal-discount-pct">
+                        </span>
+                    </div>
+
+                    <!-- Description -->
+                    <p id="modalDesc"
+                       class="modal-desc"></p>
+
+                    <!-- Divider -->
+                    <hr>
+
+                    <!-- Cart Button -->
+                    <div class="d-flex gap-3
+                                align-items-center mb-3">
+                        <div class="qty-wrap">
+                            <button class="qty-btn"
+                                    onclick="changeQty(-1)">
+                                −
+                            </button>
+                            <span id="modalQty">1</span>
+                            <button class="qty-btn"
+                                    onclick="changeQty(1)">
+                                +
+                            </button>
+                        </div>
+                        <form id="modalCartForm"
+                              method="POST"
+                              style="flex:1;">
+                            <input type="hidden"
+                                   name="csrf_token"
+                                   value="{{ csrf_token() }}">
+                            <input type="hidden"
+                                   name="qty"
+                                   id="modalQtyInput"
+                                   value="1">
+                            <button type="submit"
+                                    class="btn btn-primary
+                                           w-100 fw-bold">
+                                <i class="fas fa-cart-plus me-2"></i>
+                                Cart এ যোগ করুন
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Share -->
+                    <div class="d-flex gap-2 mt-2">
+                        <small class="text-muted">Share:</small>
+                        <a href="#"
+                           class="share-btn facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                           class="share-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentQty = 1;
+
+function openProductModal(data) {
+    currentQty = 1;
+    document.getElementById('modalQty').textContent = 1;
+    document.getElementById('modalQtyInput').value = 1;
+
+    // Image
+    const img = document.getElementById('modalImage');
+    img.src = data.image || '/static/images/no-image.png';
+    img.alt = data.name;
+
+    // Badge
+    const badge = document.getElementById('modalBadge');
+    if (data.badge) {
+        badge.textContent = data.badge;
+        badge.style.display = 'inline-block';
+    } else {
+        badge.style.display = 'none';
+    }
+
+    // Category
+    document.getElementById('modalCategory').textContent =
+        data.category || '';
+
+    // Name
+    document.getElementById('modalName').textContent =
+        data.name || '';
+
+    // Price
+    document.getElementById('modalPrice').textContent =
+        '৳' + data.price;
+
+    // Old Price & Discount
+    const oldPriceEl = document.getElementById('modalOldPrice');
+    const discountEl = document.getElementById('modalDiscount');
+    if (data.old_price) {
+        oldPriceEl.textContent = '৳' + data.old_price;
+        oldPriceEl.style.display = 'inline';
+        const pct = Math.round(
+            (data.old_price - data.price) /
+            data.old_price * 100);
+        discountEl.textContent = '-' + pct + '%';
+        discountEl.style.display = 'inline-block';
+    } else {
+        oldPriceEl.style.display = 'none';
+        discountEl.style.display = 'none';
+    }
+
+    // Description
+    document.getElementById('modalDesc').textContent =
+        data.description || '';
+
+    // Cart Form Action
+    document.getElementById('modalCartForm').action =
+        data.cart_url;
+
+    // Show Modal
+    const modal = document.getElementById('productModal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    // Image Zoom on scroll
+    img.style.transform = 'scale(1)';
+    const imgWrap = document.querySelector('.modal-img-wrap');
+    imgWrap.onwheel = function(e) {
+        e.preventDefault();
+        const current = parseFloat(
+            img.style.transform.replace('scale(', '')) || 1;
+        let next = current + (e.deltaY < 0 ? 0.1 : -0.1);
+        next = Math.min(Math.max(next, 1), 3);
+        img.style.transform = 'scale(' + next + ')';
+    };
+}
+
+function closeProductModal() {
+    document.getElementById('productModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function changeQty(n) {
+    currentQty = Math.max(1, currentQty + n);
+    document.getElementById('modalQty').textContent = currentQty;
+    document.getElementById('modalQtyInput').value = currentQty;
+}
+
+// ESC বা Outside Click এ বন্ধ করো
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeProductModal();
+});
+document.getElementById('productModal')
+    .addEventListener('click', function(e) {
+    if (e.target === this) closeProductModal();
 });
 </script>
 </body>
