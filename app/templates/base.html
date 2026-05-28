@@ -25,7 +25,7 @@
 
         /* ── Navbar ── */
         .navbar {
-            background: var(--primary) !important;
+            background: var(--light) !important;
             box-shadow: 0 2px 15px rgba(244, 245, 244, 0.847);
             padding: 0.8rem 0;
         }
@@ -897,12 +897,12 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/">
     <img src="/static/images/logo.png"
          height="45"
-         onerror="this.style.display='none'"
+         onerror="this.style.display='true'; this.src='/static/images/logo-alt.png';"
          alt="SHOSHTHO Logo">
     SHOSHTHO<span>( ষষ্ঠ )</span>
 </a>
