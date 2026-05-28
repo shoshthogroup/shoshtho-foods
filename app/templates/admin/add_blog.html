@@ -8,12 +8,13 @@
                 <h3 class="fw-bold mb-4">
                     📝 নতুন Blog Post যোগ করুন
                 </h3>
-                <form method="POST" action="/admin/blog/add"
+                <form method="POST"
+                      action="/admin/blog/add"
                       enctype="multipart/form-data">
 
                     <div class="mb-3">
                         <label class="form-label fw-bold">
-                            Title *
+                            Title
                         </label>
                         <input type="text" name="title"
                                class="form-control" required>
@@ -29,14 +30,18 @@
                                 Health Tips
                             </option>
                             <option value="Recipe">Recipe</option>
-                            <option value="Nutrition">Nutrition</option>
-                            <option value="Lifestyle">Lifestyle</option>
+                            <option value="Nutrition">
+                                Nutrition
+                            </option>
+                            <option value="Lifestyle">
+                                Lifestyle
+                            </option>
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label fw-bold">
-                            Content *
+                            Content
                         </label>
                         <textarea name="content"
                                   class="form-control"
@@ -61,4 +66,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

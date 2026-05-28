@@ -8,7 +8,7 @@
         <div>
             <a href="/admin/blog/add"
                class="btn btn-success me-2">
-                + নতুন Blog
+                + নতুন Blog যোগ করুন
             </a>
             <a href="/admin"
                class="btn btn-outline-primary">
@@ -65,16 +65,10 @@
                         </td>
                     </tr>
                     {% endfor %}
-                    {% if not posts %}
-                    <tr>
-                        <td colspan="5" class="text-center py-4">
-                            কোনো Blog নেই। নতুন যোগ করুন।
-                        </td>
-                    </tr>
-                    {% endif %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
 {% endblock %}
