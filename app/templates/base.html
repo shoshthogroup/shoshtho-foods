@@ -25,29 +25,53 @@
 
         /* ── Navbar ── */
         .navbar {
-            background: var(--light) !important;
-            box-shadow: 0 2px 15px rgba(243, 244, 243, 0.847);
-            padding: 0.8rem 0;
+            background: white !important;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            padding: 0.6rem 0;
+            border-bottom: 2px solid #f0f4f8;
         }
         .navbar-brand {
-            color: white !important;
+            color: #1a3c5e !important;
             font-weight: 700;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             letter-spacing: 0.5px;
         }
         .navbar-brand span { color: var(--accent); }
+        .navbar-brand .brand-logo-circle {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg,#1a3c5e,#2e86c1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 2px 8px rgba(26,60,94,0.3);
+            transition: transform 0.3s;
+        }
+        .navbar-brand:hover .brand-logo-circle {
+            transform: rotate(10deg) scale(1.05);
+        }
         .nav-link {
-            color: rgba(255,255,255,0.85) !important;
+            color: #2c3e50 !important;
             font-weight: 500;
             padding: 0.5rem 1rem !important;
             border-radius: 6px;
             transition: all 0.2s;
         }
         .nav-link:hover {
-            color: white !important;
-            background: rgba(255,255,255,0.1);
+            color: #1a3c5e !important;
+            background: rgba(26,60,94,0.06);
         }
         .nav-link.active { color: var(--accent) !important; }
+        .navbar-toggler {
+            border: 2px solid #1a3c5e;
+            border-radius: 8px;
+            padding: 4px 8px;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%231a3c5e' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
         .cart-badge {
             background: var(--accent);
             color: white;
@@ -55,6 +79,20 @@
             padding: 2px 7px;
             font-size: 0.75rem;
             font-weight: 700;
+        }
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .btn-accent:hover {
+            background: #e67e22;
+            color: white;
+            transform: translateY(-1px);
         }
 
         /* ── Buttons ── */
@@ -331,6 +369,12 @@
             background: #f0f4f8;
             color: var(--primary);
             padding-left: 1.3rem;
+        }
+        .dropdown-toggle::after {
+            color: #1a3c5e;
+        }
+        .dropdown-menu {
+            margin-top: 0.8rem !important;
         }
         /* ── Image Zoom ── */
         .zoom-container { cursor: zoom-in; }
@@ -900,15 +944,34 @@
 <nav class="navbar navbar-expand-lg sticky-top" style="color:#1a3c5e;">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-    <img src="/static/images/logo.png"
-         height="45"
-         onerror="this.style.display='None'; this.src='/static/images/logo-alt.png';"
-         alt="SHOSHTHO Logo">
-    SHOSHTHO<span>( ষষ্ঠ )</span> <br>
-     <h2 class="fw-bold mb-4" style="color:#1a3c5e;">
-                    BUILT FOR BETTER LIVING
-                </h2>
-</a>
+        <!-- Logo Circle -->
+        <div class="brand-logo-circle">
+            {% if logo_exists %}
+            <img src="/static/images/logo.png"
+                style="width:32px; height:32px;
+                        border-radius:50%;
+                        object-fit:cover;">
+            {% else %}
+            🌿
+            {% endif %}
+        </div>
+        <!-- Brand Name -->
+        <div>
+            <div style="font-size:1.1rem;
+                        font-weight:700;
+                        color:#1a3c5e;
+                        line-height:1.1;">
+                SHOSHTHO<span style="color:#f39c12;">( ষষ্ঠ )</span>
+            </div>
+            <div style="font-size:0.65rem;
+                        color:#6c757d;
+                        letter-spacing:1px;
+                        text-transform:uppercase;">
+                built for better living
+            </div>
+        </div>
+    </a>
+    
         <button class="navbar-toggler border-0" type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navMenu">
