@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="page-header">
+    <div class="container d-flex justify-content-between
+                align-items-center">
+        <h2>📖 Blog Management</h2>
+        <div>
+            <a href="/admin/blog/add"
+               class="btn btn-success me-2">
+                + নতুন Blog
+            </a>
+            <a href="/admin"
+               class="btn btn-outline-primary">
+                ← Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>ছবি</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>তারিখ</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td>
+                            {% if post.image_url %}
+                            <img src="{{ post.image_url }}"
+                                 width="60" height="60"
+                                 style="object-fit:cover;
+                                        border-radius:8px;">
+                            {% else %}
+                            <span class="fs-2">📰</span>
+                            {% endif %}
+                        </td>
+                        <td class="fw-bold">{{ post.title }}</td>
+                        <td>
+                            <span class="badge bg-primary">
+                                {{ post.category }}
+                            </span>
+                        </td>
+                        <td>
+                            {{ post.created_at.strftime('%d %b %Y') }}
+                        </td>
+                        <td>
+                            <form method="POST"
+                                  action="/admin/blog/delete/{{ post.id }}"
+                                  style="display:inline"
+                                  onsubmit="return confirm('মুছবেন?')">
+                                <button class="btn btn-sm btn-danger">
+                                    🗑️ Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% if not posts %}
+                    <tr>
+                        <td colspan="5" class="text-center py-4">
+                            কোনো Blog নেই। নতুন যোগ করুন।
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -57,42 +57,57 @@
                                class="form-control">
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">
-                            Button Text
-                        </label>
-                        <input type="text" name="button_text"
-                               class="form-control"
-                               placeholder="যেমন: দেখুন, Order করুন">
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label class="form-label fw-bold">
+                                Button Text
+                            </label>
+                            <input type="text"
+                                   name="button_text"
+                                   class="form-control"
+                                   placeholder="দেখুন">
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label class="form-label fw-bold">
+                                Button Link
+                            </label>
+                            <input type="text"
+                                   name="button_link"
+                                   class="form-control"
+                                   placeholder="/menu">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label class="form-label fw-bold">
+                                Emoji
+                            </label>
+                            <input type="text" name="emoji"
+                                   class="form-control"
+                                   value="🍽️">
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label class="form-label fw-bold">
+                                Sort Order
+                            </label>
+                            <input type="number"
+                                   name="sort_order"
+                                   class="form-control"
+                                   value="0">
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label fw-bold">
-                            Button Link
-                        </label>
-                        <input type="text" name="button_link"
-                               class="form-control"
-                               placeholder="/menu অথবা /craft">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">
-                            Emoji (ছবি না থাকলে)
-                        </label>
-                        <input type="text" name="emoji"
-                               class="form-control"
-                               placeholder="🍽️ অথবা 👗"
-                               value="🍽️">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">
-                            Background Color
+                            Background Color/Gradient
                         </label>
                         <input type="text" name="bg_color"
                                class="form-control"
-                               value="linear-gradient(135deg,#1a3c5e,#2e86c1)"
-                               placeholder="CSS gradient অথবা color">
+                               value="linear-gradient(135deg,#1a3c5e,#2e86c1)">
+                        <small class="text-muted">
+                            CSS color অথবা gradient
+                        </small>
                     </div>
 
                     <div class="mb-3">
@@ -103,17 +118,9 @@
                                class="form-control"
                                accept="image/*">
                         <small class="text-muted">
-                            ছবি দিলে Background Color
+                            ছবি দিলে background color
                             কাজ করবে না
                         </small>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">
-                            Sort Order
-                        </label>
-                        <input type="number" name="sort_order"
-                               class="form-control" value="0">
                     </div>
 
                     <button type="submit"

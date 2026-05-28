@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow p-4">
+                <h3 class="fw-bold mb-4">
+                    📝 নতুন Blog Post যোগ করুন
+                </h3>
+                <form method="POST" action="/admin/blog/add"
+                      enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Title *
+                        </label>
+                        <input type="text" name="title"
+                               class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Category
+                        </label>
+                        <select name="category"
+                                class="form-select">
+                            <option value="Health Tips">
+                                Health Tips
+                            </option>
+                            <option value="Recipe">Recipe</option>
+                            <option value="Nutrition">Nutrition</option>
+                            <option value="Lifestyle">Lifestyle</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Content *
+                        </label>
+                        <textarea name="content"
+                                  class="form-control"
+                                  rows="6" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            ছবি Upload
+                        </label>
+                        <input type="file" name="image"
+                               class="form-control"
+                               accept="image/*">
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-primary w-100 btn-lg">
+                        ✅ Publish করুন
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

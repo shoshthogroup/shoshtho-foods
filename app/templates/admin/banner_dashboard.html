@@ -11,7 +11,9 @@
                 + নতুন Banner
             </a>
             <a href="/admin"
-               class="btn btn-outline-primary">← Dashboard</a>
+               class="btn btn-outline-primary">
+                ← Dashboard
+            </a>
         </div>
     </div>
 </div>
@@ -22,7 +24,7 @@
             <table class="table table-hover align-middle">
                 <thead>
                     <tr>
-                        <th>ছবি</th>
+                        <th>Preview</th>
                         <th>Title</th>
                         <th>Page</th>
                         <th>Type</th>
@@ -43,7 +45,8 @@
                             <div style="width:80px;height:50px;
                                  background:{{ b.bg_color }};
                                  border-radius:6px;
-                                 display:flex;align-items:center;
+                                 display:flex;
+                                 align-items:center;
                                  justify-content:center;
                                  font-size:1.5rem;">
                                 {{ b.emoji }}
@@ -53,19 +56,26 @@
                         <td class="fw-bold">{{ b.title }}</td>
                         <td>
                             <span class="badge
-                                {% if b.page=='food' %}bg-success
-                                {% else %}bg-purple{% endif %}">
+                                {% if b.page=='food' %}
+                                bg-success
+                                {% else %}bg-warning{% endif %}">
                                 {{ b.page }}
                             </span>
                         </td>
-                        <td>{{ b.banner_type }}</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                {{ b.banner_type }}
+                            </span>
+                        </td>
                         <td>
                             <form method="POST"
                                   action="/admin/banner/toggle/{{ b.id }}">
                                 <button class="btn btn-sm
-                                    {% if b.is_active %}btn-success
+                                    {% if b.is_active %}
+                                    btn-success
                                     {% else %}btn-secondary{% endif %}">
-                                    {% if b.is_active %}✅ Active
+                                    {% if b.is_active %}
+                                    ✅ Active
                                     {% else %}❌ Off{% endif %}
                                 </button>
                             </form>
@@ -81,6 +91,13 @@
                         </td>
                     </tr>
                     {% endfor %}
+                    {% if not banners %}
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+                            কোনো Banner নেই। নতুন যোগ করুন।
+                        </td>
+                    </tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>
