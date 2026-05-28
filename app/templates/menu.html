@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Food Page Header -->
 <div class="food-page-header">
     <div class="container">
         <h1 class="fw-bold text-white mb-1">
@@ -13,7 +12,7 @@
     </div>
 </div>
 
-<!-- Search Bar -->
+<!-- Search -->
 <div style="background:white; padding:1rem 0;
             box-shadow:0 2px 8px rgba(0,0,0,0.06);">
     <div class="container">
@@ -22,180 +21,169 @@
             <input type="text" id="searchInput"
                    class="search-bar"
                    placeholder="খাবার খুঁজুন..."
-                   onkeyup="searchFood()">
+                   onkeyup="searchItems()">
         </div>
     </div>
 </div>
 
-<!-- Promo Banner Slider -->
+<!-- Slider (Admin Controlled) -->
+{% if sliders %}
 <div class="container my-3">
-    <div id="promoSlider" class="carousel slide"
-         data-bs-ride="carousel" data-bs-interval="3000">
+    <div id="foodSlider" class="carousel slide"
+         data-bs-ride="carousel" data-bs-interval="3500">
         <div class="carousel-inner rounded-3 overflow-hidden">
-            <div class="carousel-item active">
+            {% for banner in sliders %}
+            <div class="carousel-item
+                        {% if loop.first %}active{% endif %}">
+                {% if banner.image_url %}
                 <div class="promo-banner"
-                     style="background:linear-gradient(135deg,#1a3c5e,#2e86c1);">
-                    <div class="row align-items-center h-100 px-4">
-                        <div class="col-7">
-                            <p class="text-white opacity-75 mb-1 small">
-                                SHOSHTHO Foods
-                            </p>
+                     style="background:url('{{ banner.image_url }}')
+                            center/cover no-repeat;">
+                    <div class="promo-overlay">
+                        <div class="container px-4">
                             <h4 class="text-white fw-bold mb-2">
-                                তাজা ও পুষ্টিকর<br>
-                                <span style="color:#f39c12;">
-                                    খাবার
-                                </span> পান এখনই
+                                {{ banner.title }}
                             </h4>
-                            <a href="#products"
+                            <p class="text-white opacity-90 mb-2">
+                                {{ banner.subtitle }}
+                            </p>
+                            {% if banner.button_text %}
+                            <a href="{{ banner.button_link or '#' }}"
                                class="btn btn-sm btn-accent">
-                                Order করুন
+                                {{ banner.button_text }}
                             </a>
-                        </div>
-                        <div class="col-5 text-center">
-                            <div style="font-size:5rem;">🥗</div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item">
+                {% else %}
                 <div class="promo-banner"
-                     style="background:linear-gradient(135deg,#7d6608,#f39c12);">
-                    <div class="row align-items-center h-100 px-4">
+                     style="background:{{ banner.bg_color }};">
+                    <div class="row align-items-center
+                                h-100 px-4">
                         <div class="col-7">
-                            <p class="text-white opacity-75 mb-1 small">
-                                Special Offer
-                            </p>
                             <h4 class="text-white fw-bold mb-2">
-                                Organic Food<br>
-                                <span style="color:white;">
-                                    সেরা দামে
-                                </span>
+                                {{ banner.title }}
                             </h4>
-                            <a href="/menu?sub=Organic"
-                               class="btn btn-sm btn-light fw-bold"
-                               style="color:#f39c12;">
-                                দেখুন
-                            </a>
-                        </div>
-                        <div class="col-5 text-center">
-                            <div style="font-size:5rem;">🌿</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="promo-banner"
-                     style="background:linear-gradient(135deg,#1a5e20,#27ae60);">
-                    <div class="row align-items-center h-100 px-4">
-                        <div class="col-7">
-                            <p class="text-white opacity-75 mb-1 small">
-                                Fresh Today
+                            <p class="text-white opacity-75 mb-2">
+                                {{ banner.subtitle }}
                             </p>
-                            <h4 class="text-white fw-bold mb-2">
-                                আজকের<br>
-                                <span style="color:#f39c12;">
-                                    Fresh Items
-                                </span>
-                            </h4>
-                            <a href="/menu?sub=Fresh"
+                            {% if banner.button_text %}
+                            <a href="{{ banner.button_link or '#' }}"
                                class="btn btn-sm btn-accent">
-                                দেখুন
+                                {{ banner.button_text }}
                             </a>
+                            {% endif %}
                         </div>
                         <div class="col-5 text-center">
-                            <div style="font-size:5rem;">🥦</div>
+                            <div style="font-size:5rem;">
+                                {{ banner.emoji }}
+                            </div>
                         </div>
                     </div>
                 </div>
+                {% endif %}
             </div>
+            {% endfor %}
         </div>
+        {% if sliders|length > 1 %}
         <button class="carousel-control-prev" type="button"
-                data-bs-target="#promoSlider"
+                data-bs-target="#foodSlider"
                 data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </button>
         <button class="carousel-control-next" type="button"
-                data-bs-target="#promoSlider"
+                data-bs-target="#foodSlider"
                 data-bs-slide="next">
             <span class="carousel-control-next-icon"></span>
         </button>
+        {% endif %}
     </div>
 </div>
+{% endif %}
 
-<!-- Mini Banners -->
-<div class="container mb-4">
+<!-- Mini Banners (Admin Controlled) -->
+{% if minis %}
+<div class="container mb-3">
     <div class="row g-3">
+        {% for mini in minis %}
         <div class="col-6">
-            <a href="/menu?sub=Organic"
+            <a href="{{ mini.button_link or '#' }}"
                class="mini-banner"
-               style="background:linear-gradient(135deg,#1a5e20,#27ae60);">
+               style="background:{% if mini.image_url %}
+                      url('{{ mini.image_url }}') center/cover
+                      {% else %}{{ mini.bg_color }}{% endif %};">
+                {% if not mini.image_url %}
                 <div>
-                    <div class="fs-2 mb-1">🌿</div>
-                    <div class="fw-bold text-white">Organic</div>
+                    <div class="fs-2 mb-1">{{ mini.emoji }}</div>
+                    <div class="fw-bold text-white">
+                        {{ mini.title }}
+                    </div>
                     <small class="text-white opacity-75">
-                        প্রাকৃতিক খাবার
+                        {{ mini.subtitle }}
                     </small>
                 </div>
-            </a>
-        </div>
-        <div class="col-6">
-            <a href="/menu?sub=Snacks"
-               class="mini-banner"
-               style="background:linear-gradient(135deg,#7d6608,#f39c12);">
-                <div>
-                    <div class="fs-2 mb-1">🍿</div>
-                    <div class="fw-bold text-white">Snacks</div>
-                    <small class="text-white opacity-75">
-                        মজাদার নাস্তা
-                    </small>
+                {% else %}
+                <div class="mini-overlay">
+                    <div class="fw-bold text-white">
+                        {{ mini.title }}
+                    </div>
                 </div>
+                {% endif %}
             </a>
         </div>
+        {% endfor %}
     </div>
 </div>
+{% endif %}
 
-<!-- Filter Buttons -->
+<!-- Filter -->
 <div class="container mb-3">
     <div class="d-flex flex-wrap gap-2">
         <a href="/menu"
-           class="filter-btn {% if not current_sub %}active-filter{% endif %}">
+           class="filter-btn
+           {% if not current_sub %}active-filter{% endif %}">
             সব
         </a>
         <a href="/menu?sub=Organic"
-           class="filter-btn {% if current_sub=='Organic' %}active-filter{% endif %}">
+           class="filter-btn
+           {% if current_sub=='Organic' %}active-filter{% endif %}">
             🌿 Organic
         </a>
         <a href="/menu?sub=Fresh"
-           class="filter-btn {% if current_sub=='Fresh' %}active-filter{% endif %}">
+           class="filter-btn
+           {% if current_sub=='Fresh' %}active-filter{% endif %}">
             🥦 Fresh
         </a>
         <a href="/menu?sub=Snacks"
-           class="filter-btn {% if current_sub=='Snacks' %}active-filter{% endif %}">
+           class="filter-btn
+           {% if current_sub=='Snacks' %}active-filter{% endif %}">
             🍿 Snacks
         </a>
         <a href="/menu?sub=Drinks"
-           class="filter-btn {% if current_sub=='Drinks' %}active-filter{% endif %}">
+           class="filter-btn
+           {% if current_sub=='Drinks' %}active-filter{% endif %}">
             🥤 Drinks
         </a>
     </div>
 </div>
 
 <!-- Products -->
-<div class="container mb-5" id="products">
+<div class="container mb-4" id="products">
     <h5 class="fw-bold mb-3" style="color:#1a3c5e;">
         ⭐ Featured Products
     </h5>
-
     {% if foods %}
-    <div class="row g-3" id="foodGrid">
+    <div class="row g-3" id="itemGrid">
         {% for food in foods %}
-        <div class="col-6 col-md-4 food-item"
+        <div class="col-6 col-md-4 item-card"
              data-name="{{ food.name|lower }}">
             <div class="product-card">
-                <!-- Discount Badge -->
-                <div class="discount-badge">New</div>
-
-                <!-- Image -->
+                {% if food.badge %}
+                <div class="discount-badge">
+                    {{ food.badge }}
+                </div>
+                {% endif %}
                 <div class="product-img-wrap">
                     {% if food.image_url %}
                     <img src="{{ food.image_url }}"
@@ -205,20 +193,27 @@
                     <div class="product-no-img">🍱</div>
                     {% endif %}
                 </div>
-
-                <!-- Info -->
                 <div class="product-info">
                     <span class="product-cat">
-                        {{ food.sub_category or 'Food' }}
+                        {{ food.sub_category or food.category or 'Food' }}
                     </span>
                     <h6 class="product-name">{{ food.name }}</h6>
                     <p class="product-desc">
-                        {{ food.description[:50] if food.description else '' }}...
+                        {% if food.description %}
+                        {{ food.description[:60] }}...
+                        {% endif %}
                     </p>
                     <div class="product-bottom">
-                        <span class="product-price">
-                            ৳{{ food.price }}
-                        </span>
+                        <div>
+                            <span class="product-price">
+                                ৳{{ food.price }}
+                            </span>
+                            {% if food.old_price %}
+                            <span class="old-price">
+                                ৳{{ food.old_price }}
+                            </span>
+                            {% endif %}
+                        </div>
                         <form action="/cart/add/food/{{ food.id }}"
                               method="POST">
                             <button class="product-cart-btn"
@@ -243,39 +238,100 @@
     {% endif %}
 </div>
 
-<!-- Bottom Nav (Mobile) -->
+<!-- Blog Section -->
+{% if blogs %}
+<div class="container mb-4">
+    <h5 class="fw-bold mb-3" style="color:#1a3c5e;">
+        📖 নতুন ব্লগ পড়ুন
+    </h5>
+    <div id="blogSlider" class="carousel slide"
+         data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for post in blogs %}
+            <div class="carousel-item
+                        {% if loop.first %}active{% endif %}">
+                <div class="blog-card">
+                    <div class="blog-img-wrap">
+                        {% if post.image_url %}
+                        <img src="{{ post.image_url }}"
+                             class="blog-img"
+                             alt="{{ post.title }}">
+                        {% else %}
+                        <div class="blog-no-img">📰</div>
+                        {% endif %}
+                        <div class="blog-date">
+                            <div class="blog-day">
+                                {{ post.created_at.strftime('%d') }}
+                            </div>
+                            <div class="blog-month">
+                                {{ post.created_at.strftime('%b').upper() }}
+                            </div>
+                        </div>
+                        <div class="blog-cat-badge">
+                            {{ post.category }}
+                        </div>
+                    </div>
+                    <div class="blog-body">
+                        <h6 class="blog-title">{{ post.title }}</h6>
+                        <p class="blog-content">
+                            {% if post.content %}
+                            {{ post.content[:100] }}...
+                            {% endif %}
+                        </p>
+                        <a href="/blog" class="blog-read-more">
+                            আরো পড়ুন →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev blog-prev"
+                type="button" data-bs-target="#blogSlider"
+                data-bs-slide="prev">
+            <div class="blog-arrow">‹</div>
+        </button>
+        <button class="carousel-control-next blog-next"
+                type="button" data-bs-target="#blogSlider"
+                data-bs-slide="next">
+            <div class="blog-arrow">›</div>
+        </button>
+    </div>
+    <div class="text-center mt-3">
+        <a href="/blog" class="btn btn-primary px-5 fw-bold">
+            VIEW MORE
+        </a>
+    </div>
+</div>
+{% endif %}
+
+<!-- Bottom Nav -->
 <div class="bottom-nav d-md-none">
     <a href="/" class="bottom-nav-item">
-        <i class="fas fa-home"></i>
-        <span>Home</span>
+        <i class="fas fa-home"></i><span>Home</span>
     </a>
     <a href="/menu" class="bottom-nav-item active">
-        <i class="fas fa-utensils"></i>
-        <span>Food</span>
+        <i class="fas fa-utensils"></i><span>Food</span>
     </a>
     <a href="/craft" class="bottom-nav-item">
-        <i class="fas fa-tshirt"></i>
-        <span>Craft</span>
+        <i class="fas fa-tshirt"></i><span>Craft</span>
     </a>
     <a href="/cart" class="bottom-nav-item">
-        <i class="fas fa-shopping-cart"></i>
-        <span>Cart</span>
+        <i class="fas fa-shopping-cart"></i><span>Cart</span>
     </a>
-    <a href="/login" class="bottom-nav-item">
-        <i class="fas fa-user"></i>
-        <span>Account</span>
+    <a href="/admin" class="bottom-nav-item">
+        <i class="fas fa-user"></i><span>Admin</span>
     </a>
 </div>
 
 <script>
-function searchFood() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const items = document.querySelectorAll('.food-item');
-    items.forEach(item => {
-        const name = item.getAttribute('data-name');
-        item.style.display = name.includes(input) ? 'block' : 'none';
+function searchItems() {
+    const input = document.getElementById(
+        'searchInput').value.toLowerCase();
+    document.querySelectorAll('.item-card').forEach(el => {
+        el.style.display = el.getAttribute('data-name')
+            .includes(input) ? 'block' : 'none';
     });
 }
 </script>
-
 {% endblock %}

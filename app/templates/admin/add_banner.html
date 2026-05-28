@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow p-4">
+                <h3 class="fw-bold mb-4">
+                    🖼️ নতুন Banner যোগ করুন
+                </h3>
+                <form method="POST" action="/admin/banner/add"
+                      enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Page *
+                        </label>
+                        <select name="page" class="form-select"
+                                required>
+                            <option value="food">
+                                🍽️ Food Page
+                            </option>
+                            <option value="craft">
+                                👗 Craft Page
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Banner Type *
+                        </label>
+                        <select name="banner_type"
+                                class="form-select" required>
+                            <option value="slider">
+                                Slider (বড়)
+                            </option>
+                            <option value="mini">
+                                Mini Banner (ছোট)
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Title *
+                        </label>
+                        <input type="text" name="title"
+                               class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Subtitle
+                        </label>
+                        <input type="text" name="subtitle"
+                               class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Button Text
+                        </label>
+                        <input type="text" name="button_text"
+                               class="form-control"
+                               placeholder="যেমন: দেখুন, Order করুন">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Button Link
+                        </label>
+                        <input type="text" name="button_link"
+                               class="form-control"
+                               placeholder="/menu অথবা /craft">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Emoji (ছবি না থাকলে)
+                        </label>
+                        <input type="text" name="emoji"
+                               class="form-control"
+                               placeholder="🍽️ অথবা 👗"
+                               value="🍽️">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Background Color
+                        </label>
+                        <input type="text" name="bg_color"
+                               class="form-control"
+                               value="linear-gradient(135deg,#1a3c5e,#2e86c1)"
+                               placeholder="CSS gradient অথবা color">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Banner ছবি Upload
+                        </label>
+                        <input type="file" name="image"
+                               class="form-control"
+                               accept="image/*">
+                        <small class="text-muted">
+                            ছবি দিলে Background Color
+                            কাজ করবে না
+                        </small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Sort Order
+                        </label>
+                        <input type="number" name="sort_order"
+                               class="form-control" value="0">
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-success w-100 btn-lg">
+                        ✅ Banner যোগ করুন
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
