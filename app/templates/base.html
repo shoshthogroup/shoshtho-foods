@@ -40,7 +40,7 @@
         .navbar-brand .brand-logo-circle {
             width: 42px;
             height: 42px;
-            background: linear-gradient(135deg,#1a3c5e,#2e86c1);
+            background: linear-gradient(135deg,#1a3c5e,#ffff);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -937,6 +937,8 @@
         .blog-prev { left: -10px !important; }
         .blog-next { right: -10px !important; }
     </style>
+    <meta name="csrf-token"
+      content="{{ csrf_token() }}">
 </head>
 <body>
 
@@ -952,7 +954,9 @@
                         border-radius:50%;
                         object-fit:cover;">
             {% else %}
-            🌿
+             <img src="/static/images/logo.png" style="width:45px; height:45px;
+                        border-radius:50%;
+                        object-fit:cover;">
             {% endif %}
         </div>
         <!-- Brand Name -->
@@ -1215,5 +1219,21 @@
    title="WhatsApp এ যোগাযোগ করুন">
     <i class="fab fa-whatsapp"></i>
 </a>
+<script>
+// সব Form এ automatically CSRF Token যোগ করো
+document.addEventListener('DOMContentLoaded', function() {
+    const token = document.querySelector(
+        'meta[name="csrf-token"]').getAttribute('content');
+    document.querySelectorAll('form').forEach(function(form) {
+        if (!form.querySelector('input[name="csrf_token"]')) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'csrf_token';
+            input.value = token;
+            form.appendChild(input);
+        }
+    });
+});
+</script>
 </body>
 </html>
